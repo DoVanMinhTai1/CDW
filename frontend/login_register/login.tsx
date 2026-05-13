@@ -3,9 +3,13 @@ import './login.css';
 
 type LoginPageProps = {
     onSwitchToRegister: () => void;
+    onForgotPassword: () => void;
 };
 
-const LoginPage: React.FC<LoginPageProps> = ({ onSwitchToRegister }) => {
+const LoginPage: React.FC<LoginPageProps> = ({
+    onSwitchToRegister,
+    onForgotPassword,
+}) => {
     return (
         <div className="login-page">
             <div className="login-page__left">
@@ -34,7 +38,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onSwitchToRegister }) => {
                     </div>
 
                     <div className="form-content">
-                        <h2>Welcome Back</h2>
+                        <h2>Xin chào trở lại</h2>
                         <p>
                             Vui lòng nhập đầy đủ thông tin để có thể xem bộ sưu tập dành riêng cho bạn.
                         </p>
@@ -48,7 +52,13 @@ const LoginPage: React.FC<LoginPageProps> = ({ onSwitchToRegister }) => {
                             <div className="form-group">
                                 <div className="password-header">
                                     <label>MẬT KHẨU</label>
-                                    <span>QUÊN MẬT KHẨU?</span>
+                                    <button
+                                        type="button"
+                                        className="password-header__link"
+                                        onClick={onForgotPassword}
+                                    >
+                                        QUÊN MẬT KHẨU?
+                                    </button>
                                 </div>
 
                                 <input type="password" placeholder="••••••••" />

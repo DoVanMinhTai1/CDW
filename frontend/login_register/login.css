@@ -110,10 +110,20 @@ body {
     align-items: center;
 }
 
-.password-header span {
+.password-header__link {
     font-size: 12px;
     color: #7b6f6a;
     cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    font: inherit;
+    text-decoration: none;
+}
+
+.password-header__link:hover {
+    color: #5b0a0a;
+    text-decoration: underline;
 }
 
 .form-group input {
