@@ -1,5 +1,6 @@
 import "./App.css";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import HomePage from "./HomePage/Home";
 import LoginPage from "./login_register/login";
 import RegisterPage from "./login_register/register";
 import ForgotPasswordPage from "./login_register/forgot-password";
@@ -9,6 +10,7 @@ function App() {
 
   return (
     <Routes>
+      <Route path="/" element={<HomePage />} />
       <Route
         path="/login"
         element={
@@ -28,7 +30,7 @@ function App() {
         path="/register"
         element={<RegisterPage onSwitchToLogin={() => navigate("/login")} />}
       />
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
