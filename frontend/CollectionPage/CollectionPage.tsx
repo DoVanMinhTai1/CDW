@@ -3,13 +3,10 @@ import './CollectionPage.css';
 import Header from "../header_footer/header.tsx";
 import Footer from "../header_footer/footer.tsx";
 import {
-    Heart,
-    ShoppingBag,
-    User,
-    Search,
     ChevronDown,
     ArrowRight,
 } from 'lucide-react';
+import { Link } from "react-router-dom";
 import React from "react";
 
 const products = [
@@ -154,17 +151,21 @@ const CollectionPage = () => {
                 {/* PRODUCTS */}
                 <div className="products-grid">
                     {products.map((item, index) => (
-                        <div className="product-card" key={index}>
+                        <Link
+                            to={`/product/${index}`}
+                            key={index}
+                            className="product-card"
+                        >
                             <img src={item.image} alt={item.name} />
 
                             <span className="product-category">
-                {item.category}
-              </span>
+                                {item.category}
+                            </span>
 
                             <h3>{item.name}</h3>
 
                             <p>{item.price}</p>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </section>
