@@ -5,6 +5,7 @@ import LoginPage from "./login_register/login";
 import RegisterPage from "./login_register/register";
 import ForgotPasswordPage from "./login_register/forgot-password";
 import CollectionPage from "./CollectionPage/CollectionPage";
+import ProductDetail from "./ProductDetail/ProductDetail";
 
 function App() {
   const navigate = useNavigate();
@@ -13,6 +14,8 @@ function App() {
     <Routes>
       <Route path="/" element={<HomePage />} />
         <Route path="/collection" element={<CollectionPage/>} />
+        <Route path="/ProductDetail" element={<ProductDetail/>} />
+        <Route path="/product/:productId" element={<ProductDetail/>} />
       <Route
         path="/login"
         element={
