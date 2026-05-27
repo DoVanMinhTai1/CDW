@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-
+import Header from "../header_footer/header.tsx";
+import Footer from "../header_footer/footer.tsx";
 const img = {
   heroRing:
     "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=80",
@@ -30,39 +31,7 @@ const img = {
 const HomePage: React.FC = () => {
   return (
     <div className="home-page">
-      <header className="home-page__header">
-        <div className="home-page__header-inner">
-          <Link to="/" className="home-page__logo">
-            L&apos;éclat Heritage
-          </Link>
-          <nav className="home-page__nav" aria-label="Chính">
-            <a href="#collections">Collections</a>
-            <a href="#heritage">Our Story</a>
-            <a href="#stores">Stores</a>
-            <a href="#search">Search</a>
-          </nav>
-          <div className="home-page__header-actions">
-            <button type="button" className="home-page__icon-btn" aria-label="Tìm kiếm">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="11" cy="11" r="7" />
-                <path d="M20 20l-3-3" strokeLinecap="round" />
-              </svg>
-            </button>
-            <button type="button" className="home-page__icon-btn" aria-label="Giỏ hàng">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M6 7h15l-1.5 9h-12L6 7z" />
-                <path d="M6 7L5 3H2" strokeLinecap="round" />
-                <circle cx="9" cy="20" r="1" fill="currentColor" />
-                <circle cx="18" cy="20" r="1" fill="currentColor" />
-              </svg>
-            </button>
-            <Link to="/login" className="home-page__account">
-              Đăng nhập
-            </Link>
-          </div>
-        </div>
-      </header>
-
+        <Header />
       <section className="home-page__hero">
         <div className="home-page__hero-inner">
           <div className="home-page__hero-copy">
@@ -159,90 +128,8 @@ const HomePage: React.FC = () => {
           <img src={img.bts4} alt="Ngọc lục bảo cận cảnh" />
         </div>
       </section>
+        <Footer />
 
-      <footer id="stores" className="home-page__footer">
-        <div className="home-page__footer-top">
-          <div className="home-page__footer-brand">
-            <span className="home-page__logo home-page__logo--footer">L&apos;éclat Heritage</span>
-            <p>
-              Chúng tôi tin vào vẻ đẹp bền vững — nơi mỗi chi tiết đều mang dấu ấn của thời gian
-              và bàn tay con người.
-            </p>
-          </div>
-          <div className="home-page__footer-columns">
-            <div>
-              <h3>Shop</h3>
-              <ul>
-                <li>
-                  <a href="#new-arrivals">New arrivals</a>
-                </li>
-                <li>
-                  <a href="#collections">Collections</a>
-                </li>
-                <li>
-                  <a href="#heritage">High jewelry</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3>About</h3>
-              <ul>
-                <li>
-                  <a href="#heritage">Our heritage</a>
-                </li>
-                <li>
-                  <a href="#search">Craftsmanship</a>
-                </li>
-                <li>
-                  <a href="#stores">Boutiques</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h3>Support</h3>
-              <ul>
-                <li>
-                  <Link to="/login">Account</Link>
-                </li>
-                <li>
-                  <a href="#footer-newsletter">Contact</a>
-                </li>
-                <li>
-                  <a href="#search">FAQ</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div id="footer-newsletter" className="home-page__footer-newsletter">
-            <h3>Join our world</h3>
-            <form className="home-page__newsletter-form" onSubmit={(e) => e.preventDefault()}>
-              <label htmlFor="newsletter-email" className="visually-hidden">
-                Email
-              </label>
-              <input id="newsletter-email" type="email" placeholder="Your email" autoComplete="email" />
-              <button type="submit" aria-label="Đăng ký">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </form>
-          </div>
-        </div>
-        <div className="home-page__footer-bottom">
-          <p>© {new Date().getFullYear()} L&apos;éclat Heritage. All rights reserved.</p>
-          <div className="home-page__social">
-            <a href="#search" aria-label="Instagram">
-              <span aria-hidden>IG</span>
-            </a>
-            <a href="#search" aria-label="Facebook">
-              <span aria-hidden>FB</span>
-            </a>
-            <a href="#search" aria-label="Pinterest">
-              <span aria-hidden>Pi</span>
-            </a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
