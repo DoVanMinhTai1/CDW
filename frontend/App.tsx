@@ -4,6 +4,7 @@ import HomePage from "./HomePage/Home";
 import LoginPage from "./login_register/login";
 import RegisterPage from "./login_register/register";
 import ForgotPasswordPage from "./login_register/forgot-password";
+import CollectionPage from "./CollectionPage/CollectionPage";
 
 function App() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+        <Route path="/collection" element={<CollectionPage/>} />
       <Route
         path="/login"
         element={
