@@ -16,7 +16,7 @@ const Header = () => {
                     L&apos;éclat Heritage
                 </Link>
                 <nav className="home-page__nav" aria-label="Chính">
-                    <a href="#collections">Collections</a>
+                    <a href="/collection">Collections</a>
                     <a href="#heritage">Our Story</a>
                     <a href="#stores">Stores</a>
                     <a href="#search">Search</a>
