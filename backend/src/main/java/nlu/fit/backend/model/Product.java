@@ -19,9 +19,8 @@ public class Product {
     private String description;
     private BigDecimal price;
     private Integer stock;
-    private String material; // Gold, Silver, Platinum
     private Double weight;
-
+    String collectionName;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -31,4 +30,9 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private List<Review> reviews;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "material_id", nullable = false)
+    @ToString.Exclude
+    private Material material;
 }

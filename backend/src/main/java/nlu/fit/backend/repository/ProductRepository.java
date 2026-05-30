@@ -13,19 +13,19 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    @Query("SELECT new nlu.fit.backend.dto.product.ProductResponseDto(p.id, p.name, p.collectionName, p.price, p.thumbnailUrl) " +
-            "FROM Product p " +
-            "WHERE (:search IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%'))) " +
-            "AND (:categoryIds IS NULL OR p.category.id IN :categoryIds) " +
-            "AND (:materialIds IS NULL OR p.material.id IN :materialIds) " +
-            "AND (:minPrice IS NULL OR p.price >= :minPrice) " +
-            "AND (:maxPrice IS NULL OR p.price <= :maxPrice)")
-    Page<ProductResponseDto> filterProducts(
-            @Param("search") String search,
-            @Param("categoryIds") List<Long> categoryIds,
-            @Param("materialIds") List<Long> materialIds,
-            @Param("minPrice") Double minPrice,
-            @Param("maxPrice") Double maxPrice,
-            Pageable pageable
-    );
+//    @Query("SELECT new nlu.fit.backend.dto.product.ProductResponseDto(p.id, p.name, p.collectionName, p.price, p.thumbnailUrl) " +
+//            "FROM Product p " +
+//            "WHERE (:search IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%'))) " +
+//            "AND (:categoryIds IS NULL OR p.category.id IN :categoryIds) " +
+//            "AND (:materialIds IS NULL OR p.material.id IN :materialIds) " +
+//            "AND (:minPrice IS NULL OR p.price >= :minPrice) " +
+//            "AND (:maxPrice IS NULL OR p.price <= :maxPrice)")
+//    Page<ProductResponseDto> filterProducts(
+//            @Param("search") String search,
+//            @Param("categoryIds") List<Long> categoryIds,
+//            @Param("materialIds") List<Long> materialIds,
+//            @Param("minPrice") Double minPrice,
+//            @Param("maxPrice") Double maxPrice,
+//            Pageable pageable
+//    );
 }

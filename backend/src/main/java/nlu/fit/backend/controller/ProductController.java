@@ -52,14 +52,15 @@ public class ProductController {
         String search = (request.getSearch() != null && !request.getSearch().trim().isEmpty()) ? request.getSearch().trim() : null;
 
         // 4. Gọi Repository và trả kết quả bao gồm metadata phân trang (totalPages, totalElements...)
-        Page<ProductResponseDto> result = productRepository.filterProducts(
-                search,
-                categoryIds,
-                materialIds,
-                request.getMinPrice(),
-                request.getMaxPrice(),
-                pageable
-        );
+//        Page<ProductResponseDto> result = productRepository.filterProducts(
+//                search,
+//                categoryIds,
+//                materialIds,
+//                request.getMinPrice(),
+//                request.getMaxPrice(),
+//                pageable
+//        );
+        Page<ProductResponseDto> result = null;
 
         return ResponseEntity.ok(result);
     }
@@ -76,11 +77,11 @@ public class ProductController {
         detailDto.setPrice(product.getPrice());
         detailDto.setDescription(product.getDescription());
 
-        detailDto.setImages(List.of(product.getThumbnailUrl(), "url_anh_2.jpg", "url_anh_3.jpg"));
+//        detailDto.setImages(List.of(product.getThumbnailUrl(), "url_anh_2.jpg", "url_anh_3.jpg"));
         detailDto.setAvailableSizes(List.of(5, 6, 7, 8, 9));
 
-        List<ProductResponseDto> related = productRepository.findTop3ByCollectionNameAndIdNot(product.getCollectionName(), id);
-        detailDto.setRelatedProducts(related);
+//        List<ProductResponseDto> related = productRepository.findTop3ByCollectionNameAndIdNot(product.getCollectionName(), id);
+//        detailDto.setRelatedProducts(related);
 
         return ResponseEntity.ok(detailDto);
     }
