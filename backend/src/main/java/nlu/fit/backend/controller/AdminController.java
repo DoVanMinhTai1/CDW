@@ -33,25 +33,25 @@ public class AdminController {
         // - Đọc dữ liệu từ bảng SystemActivityLog lấy ra 3 hành động gần nhất của chính admin này.
 
         AdminProfileResponseDto dto = new AdminProfileResponseDto();
-        dto.setFullName("Julian Rossi");
-        dto.setEmail(email);
-        dto.setMobileNumber("+33 6 12 34 56 78");
-        dto.setRole("SUPER ADMINISTRATOR");
-        dto.setMemberSince("SINCE OCT 2021");
-        dto.setLanguage("English (UK)");
-        dto.setNotificationsActive(true);
-        dto.setCurrency("EUR (€)");
-        dto.setTwoFactorAuthEnabled(true);
-        dto.setActiveDevices(List.of("MacBook Pro M2 - Paris, FR (Current)"));
-
-        // Giả lập bảng dữ liệu log đúng theo UI
-        AdminActivityLogDto log1 = new AdminActivityLogDto();
-        log1.setAction("Modified Product 'Rivière Necklace'");
-        log1.setModule("Inventory");
-        log1.setDateTime(LocalDateTime.of(2023, 10, 24, 14, 22));
-        log1.setStatus("SUCCESS");
-
-        dto.setRecentActivities(List.of(log1));
+//        dto.setFullName("Julian Rossi");
+//        dto.setEmail(email);
+//        dto.setMobileNumber("+33 6 12 34 56 78");
+//        dto.setRole("SUPER ADMINISTRATOR");
+//        dto.setMemberSince("SINCE OCT 2021");
+//        dto.setLanguage("English (UK)");
+//        dto.setNotificationsActive(true);
+//        dto.setCurrency("EUR (€)");
+//        dto.setTwoFactorAuthEnabled(true);
+//        dto.setActiveDevices(List.of("MacBook Pro M2 - Paris, FR (Current)"));
+//
+//        // Giả lập bảng dữ liệu log đúng theo UI
+//        AdminActivityLogDto log1 = new AdminActivityLogDto();
+//        log1.setAction("Modified Product 'Rivière Necklace'");
+//        log1.setModule("Inventory");
+//        log1.setDateTime(LocalDateTime.of(2023, 10, 24, 14, 22));
+//        log1.setStatus("SUCCESS");
+//
+//        dto.setRecentActivities(List.of(log1));
 
         return ResponseEntity.ok(dto);
     }
