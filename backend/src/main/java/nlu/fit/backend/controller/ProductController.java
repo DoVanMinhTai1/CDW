@@ -1,15 +1,19 @@
 package nlu.fit.backend.controller;
 
 import lombok.RequiredArgsConstructor;
+import nlu.fit.backend.dto.product.ProductDetailResponseDto;
 import nlu.fit.backend.dto.product.ProductResponseDto;
 import nlu.fit.backend.dto.product.ProductSearchRequest;
+import nlu.fit.backend.model.Product;
 import nlu.fit.backend.repository.ProductRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -58,5 +62,26 @@ public class ProductController {
         );
 
         return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductDetailResponseDto> getProductDetail(@PathVariable Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Không tìm thấy sản phẩm"));
+
+        ProductDetailResponseDto detailDto = new ProductDetailResponseDto();
+        detailDto.setId(product.getId());
+        detailDto.setName(product.getName());
+        detailDto.setCollectionName(product.getCollectionName());
+        detailDto.setPrice(product.getPrice());
+        detailDto.setDescription(product.getDescription());
+
+        detailDto.setImages(List.of(product.getThumbnailUrl(), "url_anh_2.jpg", "url_anh_3.jpg"));
+        detailDto.setAvailableSizes(List.of(5, 6, 7, 8, 9));
+
+        List<ProductResponseDto> related = productRepository.findTop3ByCollectionNameAndIdNot(product.getCollectionName(), id);
+        detailDto.setRelatedProducts(related);
+
+        return ResponseEntity.ok(detailDto);
     }
 }
