@@ -9,23 +9,34 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-//    @Query("SELECT new nlu.fit.backend.dto.product.ProductResponseDto(p.id, p.name, p.collectionName, p.price, p.thumbnailUrl) " +
-//            "FROM Product p " +
-//            "WHERE (:search IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%'))) " +
-//            "AND (:categoryIds IS NULL OR p.category.id IN :categoryIds) " +
-//            "AND (:materialIds IS NULL OR p.material.id IN :materialIds) " +
-//            "AND (:minPrice IS NULL OR p.price >= :minPrice) " +
-//            "AND (:maxPrice IS NULL OR p.price <= :maxPrice)")
-//    Page<ProductResponseDto> filterProducts(
-//            @Param("search") String search,
-//            @Param("categoryIds") List<Long> categoryIds,
-//            @Param("materialIds") List<Long> materialIds,
-//            @Param("minPrice") Double minPrice,
-//            @Param("maxPrice") Double maxPrice,
-//            Pageable pageable
-//    );
+    
+    @Query("SELECT new nlu.fit.backend.dto.product.ProductResponseDto(p.id, p.name, p.collectionName, p.price, pi.url) " +
+            "FROM Product p LEFT JOIN p.images pi ON pi.isPrimary = true " +
+            "WHERE (:search IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', :search, '%'))) " +
+            "AND (:categoryIds IS NULL OR p.category.id IN :categoryIds) " +
+            "AND (:materialIds IS NULL OR p.material.id IN :materialIds) " +
+            "AND (:minPrice IS NULL OR p.price >= :minPrice) " +
+            "AND (:maxPrice IS NULL OR p.price <= :maxPrice)")
+    Page<ProductResponseDto> filterProducts(
+            @Param("search") String search,
+            @Param("categoryIds") List<Long> categoryIds,
+            @Param("materialIds") List<Long> materialIds,
+            @Param("minPrice") BigDecimal minPrice,
+            @Param("maxPrice") BigDecimal maxPrice,
+            Pageable pageable
+    );
+
+    @Query("SELECT new nlu.fit.backend.dto.product.ProductResponseDto(p.id, p.name, p.collectionName, p.price, pi.url) " +
+            "FROM Product p LEFT JOIN p.images pi ON pi.isPrimary = true " +
+            "WHERE p.category.id = :categoryId AND p.id <> :excludeId")
+    List<ProductResponseDto> findRelatedProducts(
+            @Param("categoryId") Long categoryId,
+            @Param("excludeId") Long excludeId,
+            Pageable pageable
+    );
 }
