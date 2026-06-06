@@ -112,13 +112,23 @@ const sizes = [5, 6, 7, 8, 9];
 
 const ProductDetail: React.FC = () => {
     const { productId } = useParams<{ productId: string }>();
+    const { addToCart } = useCart();
     const selectedIndex = Number(productId);
     const selectedProduct = productData[selectedIndex] ?? productData[0];
     const productGallery = [selectedProduct.image, ...galleryImages.slice(1)];
 
     const [selectedImage, setSelectedImage] = useState(productGallery[0]);
     const [selectedSize, setSelectedSize] = useState(6);
-    const { addToCart } = useCart();
+
+    const handleAddToCart = () => {
+        addToCart({
+            id: selectedIndex >= 0 ? selectedIndex : 0,
+            name: selectedProduct.name,
+            description: selectedProduct.description,
+            image: selectedProduct.image,
+            price: selectedProduct.price,
+        });
+    };
 
     return (
         <main className="product-detail">
@@ -182,16 +192,7 @@ const ProductDetail: React.FC = () => {
                         </div>
                     </div>
 
-                    <button
-                        className="product-detail__add-btn"
-                        onClick={() =>
-                            addToCart({
-                                id: selectedIndex,
-                                name: selectedProduct.name,
-                                price: selectedProduct.price,
-                                image: selectedProduct.image,                                description: selectedProduct.description,                            })
-                        }
-                    >
+                    <button className="product-detail__add-btn" onClick={handleAddToCart}>
                         Add to Cart
                     </button>
 

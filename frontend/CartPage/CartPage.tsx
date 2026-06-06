@@ -1,19 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./CartPage.css";
 import Header from "../header_footer/header.tsx";
 import Footer from "../header_footer/footer.tsx";
 import { useCart } from "../cart/CartContext";
 
-const parsePrice = (value: string) => {
-    const parsed = Number(value.replace(/[^0-9.-]+/g, ""));
-    return Number.isNaN(parsed) ? 0 : parsed;
-};
-
-const formatPrice = (value: number) => `\$${value.toFixed(2)}`;
-
 const CartPage: React.FC = () => {
-    const { items, updateQuantity, removeFromCart } = useCart();
-    const subtotal = items.reduce((sum, item) => sum + parsePrice(item.price) * item.quantity, 0);
+    const navigate = useNavigate();
+    const { cartItems, updateQuantity, removeFromCart } = useCart();
+    const subtotal = cartItems.reduce(
+        (total, item) => total + item.quantity * Number(item.price.replace(/[^0-9.-]+/g, "")),
+        0
+    );
 
     return (
         <main className="cart-page">
@@ -33,23 +31,22 @@ const CartPage: React.FC = () => {
                             <span>Subtotal</span>
                         </div>
 
-                        {items.length === 0 ? (
+                        {cartItems.length === 0 ? (
                             <div className="cart-page__empty">
-                                Your cart is empty. Add a product first to see it here.
+                                Your cart is currently empty.
                             </div>
                         ) : (
-                            items.map((item) => (
-                                <article key={`${item.id}-${item.quantity}`} className="cart-item">
+                            cartItems.map((item) => (
+                                <article key={item.id} className="cart-item">
 
                                     <div className="cart-item__product">
-                                        {item.image && <img src={item.image} alt={item.name} />}
+                                        <img src={item.image} alt={item.name} />
 
                                         <div className="cart-item__info">
                                             <h3>{item.name}</h3>
-                                            {item.description && <p>{item.description}</p>}
+                                            <p>{item.description}</p>
 
                                             <button
-                                                type="button"
                                                 className="cart-item__remove"
                                                 onClick={() => removeFromCart(item.id)}
                                             >
@@ -60,14 +57,13 @@ const CartPage: React.FC = () => {
 
                                     <div className="cart-item__quantity">
                                         <button
-                                            type="button"
                                             onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                            disabled={item.quantity <= 1}
                                         >
                                             -
                                         </button>
                                         <span>{item.quantity}</span>
                                         <button
-                                            type="button"
                                             onClick={() => updateQuantity(item.id, item.quantity + 1)}
                                         >
                                             +
@@ -75,7 +71,8 @@ const CartPage: React.FC = () => {
                                     </div>
 
                                     <div className="cart-item__price">
-                                        {formatPrice(parsePrice(item.price) * item.quantity)}
+                                        ${" "}
+                                        {((item.quantity * Number(item.price.replace(/[^0-9.-]+/g, ""))).toFixed(2))}
                                     </div>
 
                                 </article>
@@ -99,7 +96,7 @@ const CartPage: React.FC = () => {
 
                         <div className="order-summary__row">
                             <span>Subtotal</span>
-                            <span>{formatPrice(subtotal)}</span>
+                            <span>${subtotal.toFixed(2)}</span>
                         </div>
 
                         <div className="order-summary__row">
@@ -111,7 +108,7 @@ const CartPage: React.FC = () => {
 
                         <div className="order-summary__total">
                             <span>Estimated Total</span>
-                            <span>{formatPrice(subtotal)}</span>
+                            <span>${subtotal.toFixed(2)}</span>
                         </div>
 
                         <div className="order-summary__promo">
@@ -125,7 +122,11 @@ const CartPage: React.FC = () => {
 
                         </div>
 
-                        <button className="order-summary__checkout">
+                        <button
+                            className="order-summary__checkout"
+                            onClick={() => navigate("/checkout/shipping")}
+                            disabled={cartItems.length === 0}
+                        >
                             Proceed To Checkout
                         </button>
 

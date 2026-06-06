@@ -1,0 +1,246 @@
+.payment {
+    background: #f8f7f5;
+    min-height: 100vh;
+}
+
+.payment__container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 50px 60px 120px;
+}
+
+.payment__steps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 70px;
+}
+
+.payment__step {
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #b5b0ac;
+}
+
+.payment__step--active {
+    color: #4f1212;
+    border-bottom: 2px solid #4f1212;
+    padding-bottom: 6px;
+}
+
+.payment__step--done {
+    color: #6d6d6d;
+}
+
+.payment__line {
+    width: 40px;
+    height: 1px;
+    background: #d8d2cd;
+}
+
+.payment__content {
+    display: grid;
+    grid-template-columns: 1.8fr 0.9fr;
+    gap: 90px;
+}
+
+.payment__title {
+    font-family: Georgia, serif;
+    font-size: 64px;
+    color: #3d0909;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+.payment__card {
+    background: #fff;
+    border: 1px solid #e3ddd7;
+    padding: 28px;
+    margin-bottom: 22px;
+}
+
+.payment__card--active {
+    border-color: #7b3c3c;
+}
+
+.payment__card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.payment__radio {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #bdb4ae;
+    border-radius: 50%;
+    margin-right: 16px;
+}
+
+.payment__radio.active {
+    border: 5px solid #4f1212;
+}
+
+.payment__icon {
+    margin-left: auto;
+}
+
+.payment__field {
+    margin-bottom: 28px;
+}
+
+.payment__field label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #4b4b4b;
+}
+
+.payment__field input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #d9d2cd;
+    background: transparent;
+    padding: 14px 0;
+    font-size: 16px;
+}
+
+.payment__field input:focus {
+    outline: none;
+}
+
+.payment__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.payment__card--bank p {
+    color: #5f5f5f;
+    line-height: 1.8;
+    margin-left: 32px;
+}
+
+.payment__actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.payment__back {
+    border: none;
+    background: transparent;
+    color: #5d5d5d;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.payment__continue {
+    width: 320px;
+    height: 64px;
+    background: #6a0000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    letter-spacing: 2px;
+}
+
+.payment__summary {
+    background: white;
+    padding: 34px;
+    border: 1px solid #ece8e4;
+    height: fit-content;
+}
+
+.payment__summary h2 {
+    font-family: Georgia, serif;
+    font-size: 52px;
+    font-weight: 400;
+    color: #3d0909;
+    margin-bottom: 24px;
+}
+
+.payment__product {
+    display: flex;
+    gap: 16px;
+}
+
+.payment__product img {
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+}
+
+.payment__product h3 {
+    font-size: 22px;
+    font-family: Georgia, serif;
+    margin-bottom: 6px;
+    color: #2e2e2e;
+}
+
+.payment__product span {
+    display: block;
+    color: #999;
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.payment__product p {
+    color: #6a0000;
+    font-size: 22px;
+}
+
+.payment__summary-divider {
+    height: 1px;
+    background: #ebe5e0;
+    margin: 26px 0;
+}
+
+.payment__summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.payment__summary-row span:first-child {
+    color: #484848;
+}
+
+.accent {
+    color: #6a0000;
+}
+
+.payment__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Georgia, serif;
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.payment__secure {
+    margin-top: 32px;
+    background: #f8f8f8;
+    padding: 18px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #666;
+}
+
+@media (max-width: 992px) {
+    .payment__content {
+        grid-template-columns: 1fr;
+    }
+
+    .payment__title {
+        font-size: 48px;
+    }
+
+    .payment__actions {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
