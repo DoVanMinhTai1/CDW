@@ -6,6 +6,8 @@ import RegisterPage from "./login_register/register";
 import ForgotPasswordPage from "./login_register/forgot-password";
 import CollectionPage from "./CollectionPage/CollectionPage";
 import ProductDetail from "./ProductDetail/ProductDetail";
+import CartPage from "./CartPage/CartPage";
+
 
 function App() {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
         <Route path="/collection" element={<CollectionPage/>} />
         <Route path="/ProductDetail" element={<ProductDetail/>} />
+        <Route path= "/cart" element={<CartPage/>} />
         <Route path="/product/:productId" element={<ProductDetail/>} />
       <Route
         path="/login"

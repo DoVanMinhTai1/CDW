@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
 import Footer from "../header_footer/footer.tsx";
 import Header from "../header_footer/header.tsx";
+import { useCart } from "../cart/CartContext";
 
 const productData = [
     {
@@ -117,6 +118,7 @@ const ProductDetail: React.FC = () => {
 
     const [selectedImage, setSelectedImage] = useState(productGallery[0]);
     const [selectedSize, setSelectedSize] = useState(6);
+    const { addToCart } = useCart();
 
     return (
         <main className="product-detail">
@@ -180,7 +182,16 @@ const ProductDetail: React.FC = () => {
                         </div>
                     </div>
 
-                    <button className="product-detail__add-btn">
+                    <button
+                        className="product-detail__add-btn"
+                        onClick={() =>
+                            addToCart({
+                                id: selectedIndex,
+                                name: selectedProduct.name,
+                                price: selectedProduct.price,
+                                image: selectedProduct.image,                                description: selectedProduct.description,                            })
+                        }
+                    >
                         Add to Cart
                     </button>
 
