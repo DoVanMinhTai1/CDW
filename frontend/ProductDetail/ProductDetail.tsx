@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import "./ProductDetail.css";
 import Footer from "../header_footer/footer.tsx";
 import Header from "../header_footer/header.tsx";
+import { useCart } from "../cart/CartContext";
 
 const productData = [
     {
@@ -111,12 +112,23 @@ const sizes = [5, 6, 7, 8, 9];
 
 const ProductDetail: React.FC = () => {
     const { productId } = useParams<{ productId: string }>();
+    const { addToCart } = useCart();
     const selectedIndex = Number(productId);
     const selectedProduct = productData[selectedIndex] ?? productData[0];
     const productGallery = [selectedProduct.image, ...galleryImages.slice(1)];
 
     const [selectedImage, setSelectedImage] = useState(productGallery[0]);
     const [selectedSize, setSelectedSize] = useState(6);
+
+    const handleAddToCart = () => {
+        addToCart({
+            id: selectedIndex >= 0 ? selectedIndex : 0,
+            name: selectedProduct.name,
+            description: selectedProduct.description,
+            image: selectedProduct.image,
+            price: selectedProduct.price,
+        });
+    };
 
     return (
         <main className="product-detail">
@@ -180,7 +192,7 @@ const ProductDetail: React.FC = () => {
                         </div>
                     </div>
 
-                    <button className="product-detail__add-btn">
+                    <button className="product-detail__add-btn" onClick={handleAddToCart}>
                         Add to Cart
                     </button>
 
