@@ -28,8 +28,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<ProductResponseDto> getFilteredProducts(ProductSearchRequest request) {
-        // 1. Sắp xếp (Sort) dựa vào sortBy gửi lên
-        Sort sort = Sort.by("id").descending(); // Mặc định
+        Sort sort = Sort.by("id").descending();
         if (request.getSortBy() != null) {
             switch (request.getSortBy()) {
                 case "price_asc" -> sort = Sort.by("price").ascending();
@@ -38,10 +37,8 @@ public class ProductServiceImpl implements ProductService {
             }
         }
 
-        // 2. Tạo đối tượng Phân trang
         Pageable pageable = PageRequest.of(request.getPage(), request.getSize(), sort);
 
-        // 3. Chuẩn bị mảng/chuỗi filter để tránh lỗi SQL IN trống
         List<Long> categoryIds = (request.getCategoryIds() != null && !request.getCategoryIds().isEmpty()) ? request.getCategoryIds() : null;
         List<Long> materialIds = (request.getMaterialIds() != null && !request.getMaterialIds().isEmpty()) ? request.getMaterialIds() : null;
         String search = (request.getSearch() != null && !request.getSearch().trim().isEmpty()) ? request.getSearch().trim() : null;
@@ -49,13 +46,13 @@ public class ProductServiceImpl implements ProductService {
         BigDecimal minPrice = request.getMinPrice() != null ? BigDecimal.valueOf(request.getMinPrice()) : null;
         BigDecimal maxPrice = request.getMaxPrice() != null ? BigDecimal.valueOf(request.getMaxPrice()) : null;
 
-        // 4. Gọi Repository và trả kết quả bao gồm metadata phân trang
         return productRepository.filterProducts(
                 search,
                 categoryIds,
                 materialIds,
                 minPrice,
                 maxPrice,
+                request.getFeatured(),
                 pageable
         );
     }
@@ -68,11 +65,10 @@ public class ProductServiceImpl implements ProductService {
         ProductDetailResponseDto detailDto = new ProductDetailResponseDto();
         detailDto.setId(product.getId());
         detailDto.setName(product.getName());
-        detailDto.setCollectionName(product.getCollectionName());
+        detailDto.setCollectionName(product.getCategory() != null ? product.getCategory().getName() : null);
         detailDto.setPrice(product.getPrice());
         detailDto.setDescription(product.getDescription());
 
-        // Map danh sách ảnh
         if (product.getImages() != null) {
             detailDto.setImages(product.getImages().stream()
                     .map(ProductImage::getUrl)
@@ -81,10 +77,8 @@ public class ProductServiceImpl implements ProductService {
             detailDto.setImages(Collections.emptyList());
         }
 
-        // Size mặc định (phù hợp với UI FE)
         detailDto.setAvailableSizes(List.of(5, 6, 7, 8, 9));
 
-        // Danh sách sản phẩm liên quan
         if (product.getCategory() != null) {
             Pageable limit4 = PageRequest.of(0, 4);
             List<ProductResponseDto> related = productRepository.findRelatedProducts(

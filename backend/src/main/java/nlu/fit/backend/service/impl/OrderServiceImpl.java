@@ -87,6 +87,17 @@ public class OrderServiceImpl implements OrderService {
             order.setShippingAddressDump("Default Shipping Address");
         }
 
+        // Tính tổng số lượng sản phẩm (tickets) từ giỏ hàng
+        int totalTickets = cartItems.stream().mapToInt(CartItem::getQuantity).sum();
+        order.setTotalTickets(totalTickets);
+
+        // Gán user_email từ user
+        if (user != null) {
+            order.setUserEmail(user.getEmail());
+        } else {
+            order.setUserEmail("");
+        }
+
         // Lưu Order để sinh ID UUID
         order = orderRepository.save(order);
 

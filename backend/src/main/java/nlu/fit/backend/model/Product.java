@@ -20,7 +20,18 @@ public class Product {
     private BigDecimal price;
     private Integer stock;
     private Double weight;
-    String collectionName;
+    private String sku;
+    private String slug;
+    private Double carat;
+    private String clarity;
+    private String color;
+    private String cut;
+    private String size;
+    private String gender;
+    @Column(name = "original_url")
+    private String originalUrl;
+    @Column(name = "p_code")
+    private String pCode;
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -35,4 +46,7 @@ public class Product {
     @JoinColumn(name = "material_id", nullable = false)
     @ToString.Exclude
     private Material material;
+
+    @Column(name = "featured")
+    private Boolean featured = false;
 }

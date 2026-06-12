@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import Header from "../header_footer/header.tsx";
-import Footer from "../header_footer/footer.tsx";
 import "./ReviewPage.css";
+import Header from "../src/modules/header_footer/header";
+import Footer from "../src/modules/header_footer/footer";
 
 const products = [
     {

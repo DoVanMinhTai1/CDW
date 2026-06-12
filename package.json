@@ -2,10 +2,12 @@
   "scripts": {
     "dev": "vite frontend",
     "build": "vite build frontend",
-    "preview": "vite preview frontend"
+    "preview": "vite preview frontend",
+    "crawl": "node scripts/jewelry-crawler.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.16.0",
+    "playwright": "^1.60.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "react-router-dom": "^7.15.0",
@@ -14,6 +16,7 @@
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
+    "cheerio": "^1.2.0",
     "typescript": "^6.0.3",
     "vite": "^8.0.12"
   }

@@ -1,0 +1,23 @@
+{
+  "$schema": "./config.schema.json",
+  "url": "https://example-jewelry-store.com/collections/all",
+  "selectors": {
+    "productContainer": "[data-product-card], .product-card, .product-item, li.product",
+    "name": ".product-title, h2.product-name, .product-card h3, [data-product-name]",
+    "price": ".product-price, .price, [data-price]",
+    "image": ".product-image img, img.product-thumb, [data-product-image]",
+    "link": "a.product-link, .product-card a[href], a[data-product-url]",
+    "category": ".product-category, .collection-badge, [data-category]",
+    "description": ".product-desc, .description-short, [data-description]"
+  },
+  "crawler": {
+    "userAgent": "CDW-Jewelry-Crawler/1.0 (+https://github.com/your-org/cdw; data-collection-tool)",
+    "delayMs": 1500,
+    "maxRetries": 3,
+    "timeoutMs": 30000
+  },
+  "output": {
+    "format": "json",
+    "file": "./scripts/output/products.json"
+  }
+}

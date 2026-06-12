@@ -28,6 +28,9 @@ public class Order {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Column(name = "user_email", nullable = false)
+    private String userEmail;
+
     @Column(name = "sub_total", nullable = false, precision = 12, scale = 2)
     private BigDecimal subTotal; // Tiền hàng trước thuế
 
@@ -36,6 +39,9 @@ public class Order {
 
     @Column(name = "total_price", nullable = false, precision = 12, scale = 2)
     private BigDecimal totalPrice; // Tổng tiền cuối cùng phải trả
+
+    @Column(name = "total_tickets", nullable = false)
+    private Integer totalTickets;
 
     @Column(name = "payment_method", length = 50)
     private String paymentMethod; // CREDIT_CARD hoặc BANK_TRANSFER

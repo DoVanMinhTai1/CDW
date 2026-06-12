@@ -11,6 +11,7 @@ public class ProductSearchRequest {
     private Double minPrice;
     private Double maxPrice;
     private String sortBy;
+    private Boolean featured;
     private int page = 0;
     private int size = 12;
 }

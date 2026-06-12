@@ -1,0 +1,1 @@
+ALTER TABLE orders ALTER COLUMN total_tickets SET DEFAULT 0;\n\nUPDATE orders SET total_tickets = 0 WHERE total_tickets IS NULL;

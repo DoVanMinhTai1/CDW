@@ -72,7 +72,6 @@ public class UserServiceImpl implements UserService {
             throw new BadRequestException("Tài khoản đã bị khóa!");
         }
 
-        // Môi trường test NLU giữ nguyên JWT mock để khớp với FE
         String mockToken = "eyJhbGciOiJIUzI1NiJ9.mockTokenTừBackendNLU...";
 
         return new AuthResponse(

@@ -1,16 +1,16 @@
 import "./App.css";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
-import HomePage from "./HomePage/Home";
-import LoginPage from "./login_register/login";
-import RegisterPage from "./login_register/register";
-import ForgotPasswordPage from "./login_register/forgot-password";
-import CollectionPage from "./CollectionPage/CollectionPage";
-import ProductDetail from "./ProductDetail/ProductDetail";
-import CartPage from "./CartPage/CartPage";
-import CheckoutPage from "./CheckoutPage/CheckoutPage";
+import HomePage from "./src/modules/home/HomePage";
+import CollectionPage from "./src/modules/collection/CollectionPage";
+import ProductDetail from "./src/modules/product/ProductDetail";
+import CartPage from "./src/modules/cart/CartPage";
+import CheckoutPage from "./src/modules/checkout/CheckoutPage";
+import LoginPage from "./src/modules/auth/Login";
+import RegisterPage from "./src/modules/auth/Register";
+import ForgotPasswordPage from "./src/modules/auth/ForgotPassword";
+import { CartProvider } from "./src/modules/cart/CartContext";
 import PaymentPage from "./CheckoutPage/PaymentPage";
 import CheckoutReviewPage from "./CheckoutPage/ReviewPage";
-import { CartProvider } from "./cart/CartContext";
 
 function App() {
   const navigate = useNavigate();
