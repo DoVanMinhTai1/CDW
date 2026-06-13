@@ -56,7 +56,7 @@ const HomePage: React.FC = () => {
   const { showToast } = useToast();
   const { data: banners } = useApiRequest(() => bannerService.getBanners(), []);
   const { data: featured, loading: featuredLoading } = useApiRequest(() => productService.getFeaturedProducts(), []);
-
+  console.log('Featured products:', featured);
   const handleAddToCart = async (productId: string) => {
     try {
       await cartService.addToCart({ productId, quantity: 1 });
@@ -95,8 +95,8 @@ const HomePage: React.FC = () => {
         </div>
         <div className="home-page__grid">
           {featuredLoading && <p>Đang tải...</p>}
-          {!featuredLoading && (!featured || featured.length === 0) && <p>Không có sản phẩm nổi bật</p>}
-          {!featuredLoading && featured && featured.map((p: any) => (
+          {!featuredLoading && (!Array.isArray(featured) || featured.length === 0) && <p>Không có sản phẩm nổi bật</p>}
+          {!featuredLoading && Array.isArray(featured) && featured.map((p: any) => (
             <ProductCard key={p.id} product={p} onAdd={() => handleAddToCart(p.id)} />
           ))}
         </div>

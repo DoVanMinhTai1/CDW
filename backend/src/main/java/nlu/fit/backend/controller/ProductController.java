@@ -45,6 +45,7 @@ public class ProductController {
         else req.setSize(size);
 
         Page<ProductResponseDto> result = productService.getFilteredProducts(req);
+        System.out.println(productService.getFilteredProducts(req));
         return ResponseEntity.ok(result);
     }
 

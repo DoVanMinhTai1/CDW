@@ -135,19 +135,24 @@ INSERT INTO review (id, rating, comment, created_at, user_id, product_id) VALUES
 ON CONFLICT (id) DO NOTHING;
 
 INSERT INTO orders (
-    id, order_code, user_id, user_name, user_email, user_phone, total_tickets,
+    id, order_code, user_id, user_email, total_tickets,
     sub_total, estimated_tax, total_price, payment_method,
     status, gift_message, shipping_address_dump, paid_at, created_at, updated_at
 )
 SELECT
-    id, order_code, user_id, user_name, user_email, user_phone, total_tickets,
-    sub_total, estimated_tax, total_price, payment_method,
-    status, gift_message, shipping_address_dump, paid_at, created_at, updated_at
+    seed.id, seed.order_code, seed.user_id, seed.user_email, seed.total_tickets,
+    seed.sub_total, seed.estimated_tax, seed.total_price, seed.payment_method,
+    seed.status, seed.gift_message, seed.shipping_address_dump, seed.paid_at, seed.created_at, seed.updated_at
 FROM (VALUES
-          ('11111111-1111-1111-1111-111111111001', 'AUR-94012', 1002, 'Minh Anh', 'minhanh@example.com', '0901234567', 2, 39400000, 3152000, 42552000, 'CREDIT_CARD', 'DELIVERED', 'Chuc mung ky niem cua chung minh.', '12 Nguyen Hue, Ben Nghe, Ho Chi Minh City, Vietnam', NOW() - INTERVAL '11 days', NOW() - INTERVAL '12 days', NOW() - INTERVAL '10 days'),
-          ('11111111-1111-1111-1111-111111111002', 'AUR-94013', 1003, 'Hoang Nam', 'hoangnam@example.com', '0912345678', 2, 22500000, 1800000, 24300000, 'BANK_TRANSFER', 'PROCESSING', NULL, '45 Le Loi, Hai Chau, Da Nang, Vietnam', NOW() - INTERVAL '2 days', NOW() - INTERVAL '2 days', NOW() - INTERVAL '1 day'),
-          ('11111111-1111-1111-1111-111111111003', 'AUR-94014', 1004, 'Thao Linh', 'thaolinh@example.com', '0987654321', 1, 56500000, 4520000, 61020000, 'CREDIT_CARD', 'DELIVERED', 'Gui co dau trong ngay dac biet.', '88 Tran Phu, Ba Dinh, Ha Noi, Vietnam', NOW() - INTERVAL '20 days', NOW() - INTERVAL '21 days', NOW() - INTERVAL '19 days')
-     ) AS seed(id, order_code, user_id, user_name, user_email, user_phone, total_tickets, sub_total, estimated_tax, total_price, payment_method, status, gift_message, shipping_address_dump, paid_at, created_at, updated_at)
+          -- Đã loại bỏ 'Minh Anh' (user_name) và '0901234567' (user_phone)
+          ('11111111-1111-1111-1111-111111111001', 'AUR-94012', 1002, 'minhanh@example.com', 2, 39400000, 3152000, 42552000, 'CREDIT_CARD', 'DELIVERED', 'Chuc mung ky niem cua chung minh.', '12 Nguyen Hue, Ben Nghe, Ho Chi Minh City, Vietnam', CAST(NOW() - INTERVAL '11 days' AS timestamp), CAST(NOW() - INTERVAL '12 days' AS timestamp), CAST(NOW() - INTERVAL '10 days' AS timestamp)),
+
+          -- Đã loại bỏ 'Hoang Nam' (user_name) và '0912345678' (user_phone)
+          ('11111111-1111-1111-1111-111111111002', 'AUR-94013', 1003, 'hoangnam@example.com', 2, 22500000, 1800000, 24300000, 'BANK_TRANSFER', 'PROCESSING', NULL, '45 Le Loi, Hai Chau, Da Nang, Vietnam', CAST(NOW() - INTERVAL '2 days' AS timestamp), CAST(NOW() - INTERVAL '2 days' AS timestamp), CAST(NOW() - INTERVAL '1 day' AS timestamp)),
+
+          -- Đã loại bỏ 'Thao Linh' (user_name) và '0987654321' (user_phone)
+          ('11111111-1111-1111-1111-111111111003', 'AUR-94014', 1004, 'thaolinh@example.com', 1, 56500000, 4520000, 61020000, 'CREDIT_CARD', 'DELIVERED', 'Gui co dau trong ngay dac biet.', '88 Tran Phu, Ba Dinh, Ha Noi, Vietnam', CAST(NOW() - INTERVAL '20 days' AS timestamp), CAST(NOW() - INTERVAL '21 days' AS timestamp), CAST(NOW() - INTERVAL '19 days' AS timestamp))
+     ) AS seed(id, order_code, user_id, user_email, total_tickets, sub_total, estimated_tax, total_price, payment_method, status, gift_message, shipping_address_dump, paid_at, created_at, updated_at)
 WHERE NOT EXISTS (
     SELECT 1
     FROM orders o

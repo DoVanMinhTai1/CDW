@@ -14,10 +14,10 @@ import java.util.List;
 
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    
+
     @Query("SELECT new nlu.fit.backend.dto.product.ProductResponseDto(p.id, p.name, c.name, p.price, pi.url) " +
             "FROM Product p LEFT JOIN p.category c LEFT JOIN p.images pi ON pi.isPrimary = true " +
-            "WHERE (:search IS NULL OR LOWER(CAST(p.name AS String)) LIKE LOWER(CONCAT('%', :search, '%'))) " +
+            "WHERE (CAST(:search AS string) IS NULL OR LOWER(p.name) LIKE LOWER(CONCAT('%', CAST(:search AS string), '%'))) " +
             "AND (:categoryIds IS NULL OR p.category.id IN :categoryIds) " +
             "AND (:materialIds IS NULL OR p.material.id IN :materialIds) " +
             "AND (:minPrice IS NULL OR p.price >= :minPrice) " +

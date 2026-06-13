@@ -7,7 +7,7 @@ export async function getCart(): Promise<CartItem[]> {
 }
 
 export async function addToCart(item: CartItem): Promise<void> {
-  await apiCall<void>(`${ENDPOINTS.CART}`, { method: 'POST', body: JSON.stringify(item) });
+  await apiCall<void>(`${ENDPOINTS.CART}/add`, { method: 'POST', body: JSON.stringify(item) });
 }
 
 export async function removeFromCart(productId: string): Promise<void> {

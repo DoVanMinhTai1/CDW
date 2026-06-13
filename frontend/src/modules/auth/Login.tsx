@@ -13,10 +13,20 @@ const LoginPage: React.FC = () => {
 
     const { mutate: login, loading } = useMutation(async () => {
         const result = await authService.login(email, password);
-        localStorage.setItem('authToken', result.token);
-        localStorage.setItem('user', JSON.stringify(result.user));
+        console.log('Login result:', result);
+        // localStorage.setItem('authToken', result.token);
+        // localStorage.setItem('user', JSON.stringify(result.user));
         return result;
-    }, (res) => { showToast('Login successful', 'success'); navigate('/'); }, (err) => showToast(err.message, 'error'));
+    }, (res) => {
+        if (res && res.token) {
+            localStorage.setItem('authToken', res.token);
+
+            showToast('Login successful', 'success');
+            navigate('/');
+        } else {
+            showToast('Không nhận được token từ hệ thống', 'error');
+        }
+    }, (err) => showToast(err.message, 'error'));
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();

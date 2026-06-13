@@ -5,6 +5,7 @@ import CollectionPage from "./src/modules/collection/CollectionPage";
 import ProductDetail from "./src/modules/product/ProductDetail";
 import CartPage from "./src/modules/cart/CartPage";
 import CheckoutPage from "./src/modules/checkout/CheckoutPage";
+import OrderConfirmationPage from "./src/modules/checkout/OrderConfirmationPage";
 import LoginPage from "./src/modules/auth/Login";
 import RegisterPage from "./src/modules/auth/Register";
 import ForgotPasswordPage from "./src/modules/auth/ForgotPassword";
@@ -23,10 +24,11 @@ function App() {
       <Route path="/ProductDetail" element={<ProductDetail />} />
       <Route path="/cart" element={<CartPage />} />
       <Route path="/product/:productId" element={<ProductDetail />} />
-      <Route path="/checkout" element={<Navigate to="/checkout/shipping" replace />} />
+      <Route path="/checkout" element={<CheckoutPage />} />
       <Route path="/checkout/shipping" element={<CheckoutPage />} />
       <Route path="/checkout/payment" element={<PaymentPage />} />
       <Route path="/checkout/review" element={<CheckoutReviewPage />} />
+      <Route path="/order-confirmation/:orderId" element={<OrderConfirmationPage />} />
       <Route
         path="/login"
         element={

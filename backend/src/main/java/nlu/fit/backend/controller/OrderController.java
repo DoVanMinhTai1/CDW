@@ -1,6 +1,7 @@
 package nlu.fit.backend.controller;
 
 import lombok.RequiredArgsConstructor;
+import nlu.fit.backend.dto.checkout.InitCheckoutRequest;
 import nlu.fit.backend.dto.order.OrderHistoryResponseDto;
 import nlu.fit.backend.model.Order;
 import nlu.fit.backend.service.OrderService;
@@ -16,6 +17,19 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
     private final OrderService orderService;
+
+    @PostMapping
+    public ResponseEntity<Order> createOrder(
+            @RequestBody(required = false) InitCheckoutRequest request,
+            Authentication authentication) {
+        if (authentication == null) return ResponseEntity.status(401).build();
+        String userEmail = authentication.getName();
+        if (request == null) {
+            request = new InitCheckoutRequest();
+        }
+        Order order = orderService.createOrder(userEmail, request);
+        return ResponseEntity.ok(order);
+    }
 
     @GetMapping("/history")
     public ResponseEntity<Page<OrderHistoryResponseDto>> getOrderHistory(

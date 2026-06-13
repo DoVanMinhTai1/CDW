@@ -1,10 +1,50 @@
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./PaymentPage.css";
 import Header from "../src/modules/header_footer/header";
 import Footer from "../src/modules/header_footer/footer";
+import type { CartItem } from "../src/modules/cart/model";
 
 const PaymentPage = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const [paymentMethod, setPaymentMethod] = useState("card"); // "card" or "bank"
+
+    const cart: CartItem[] = location.state?.cart || [];
+    const shippingAddress = location.state?.shippingAddress;
+
+    useEffect(() => {
+        if (cart.length === 0 || !shippingAddress) {
+            console.warn("Missing cart or shipping address, redirecting back to cart.");
+            navigate("/cart");
+        }
+    }, [cart, shippingAddress, navigate]);
+
+    const handleContinue = () => {
+        const backendPaymentMethod = paymentMethod === "bank" ? "BANK_TRANSFER" : "CREDIT_CARD";
+        navigate("/checkout/review", { 
+            state: { 
+                cart, 
+                shippingAddress, 
+                paymentMethod: backendPaymentMethod 
+            } 
+        });
+    };
+
+    const subtotal = cart.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0);
+    
+    // Tax calculation based on country (matching backend)
+    let taxRate = 0.10; // default 10%
+    if (shippingAddress?.country) {
+        const countryUpper = shippingAddress.country.toUpperCase();
+        if (countryUpper.includes("FRANCE") || countryUpper.includes("GERMANY") || countryUpper.includes("ITALY")) {
+            taxRate = 0.20;
+        } else if (countryUpper.includes("USA") || countryUpper.includes("UNITED STATES")) {
+            taxRate = 0.08;
+        }
+    }
+    const tax = subtotal * taxRate;
+    const total = subtotal + tax;
 
     return (
         <>
@@ -15,21 +55,21 @@ const PaymentPage = () => {
 
                 {/* Step */}
                 <div className="payment__steps">
-          <span className="payment__step payment__step--done">
-            01 SHIPPING
-          </span>
+                    <span className="payment__step payment__step--done">
+                        01 SHIPPING
+                    </span>
 
                     <div className="payment__line" />
 
                     <span className="payment__step payment__step--active">
-            02 PAYMENT
-          </span>
+                        02 PAYMENT
+                    </span>
 
                     <div className="payment__line" />
 
                     <span className="payment__step">
-            03 REVIEW
-          </span>
+                        03 REVIEW
+                    </span>
                 </div>
 
                 <div className="payment__content">
@@ -42,24 +82,29 @@ const PaymentPage = () => {
                         </h1>
 
                         {/* Credit Card */}
-                        <div className="payment__card payment__card--active">
+                        <div 
+                            className={`payment__card ${paymentMethod === "card" ? "payment__card--active" : ""}`}
+                            onClick={() => setPaymentMethod("card")}
+                            style={{ cursor: "pointer" }}
+                        >
 
                             <div className="payment__card-header">
-                                <div className="payment__radio active" />
+                                <div className={`payment__radio ${paymentMethod === "card" ? "active" : ""}`} />
 
                                 <span>
-                  CREDIT OR DEBIT CARD
-                </span>
+                                    CREDIT OR DEBIT CARD
+                                </span>
 
                                 <span className="payment__icon">
-                  💳
-                </span>
+                                    💳
+                                </span>
                             </div>
 
                             <div className="payment__field">
                                 <label>CARDHOLDER NAME</label>
                                 <input
                                     placeholder="AS APPEARS ON CARD"
+                                    defaultValue={shippingAddress ? `${shippingAddress.firstName} ${shippingAddress.lastName}`.toUpperCase() : ""}
                                 />
                             </div>
 
@@ -85,18 +130,22 @@ const PaymentPage = () => {
                         </div>
 
                         {/* Bank */}
-                        <div className="payment__card payment__card--bank">
+                        <div 
+                            className={`payment__card payment__card--bank ${paymentMethod === "bank" ? "payment__card--active" : ""}`}
+                            onClick={() => setPaymentMethod("bank")}
+                            style={{ cursor: "pointer" }}
+                        >
 
                             <div className="payment__card-header">
-                                <div className="payment__radio" />
+                                <div className={`payment__radio ${paymentMethod === "bank" ? "active" : ""}`} />
 
                                 <span>
-                  BANK CONCIERGE TRANSFER
-                </span>
+                                    BANK CONCIERGE TRANSFER
+                                </span>
 
                                 <span className="payment__icon">
-                  🏦
-                </span>
+                                    🏦
+                                </span>
                             </div>
 
                             <p>
@@ -113,14 +162,14 @@ const PaymentPage = () => {
 
                             <button
                                 className="payment__back"
-                                onClick={() => navigate("/checkout/shipping")}
+                                onClick={() => navigate("/checkout/shipping", { state: { cart } })}
                             >
                                 ← BACK TO SHIPPING
                             </button>
 
                             <button
                                 className="payment__continue"
-                                onClick={() => navigate("/checkout/review")}
+                                onClick={handleContinue}
                             >
                                 CONTINUE TO REVIEW
                             </button>
@@ -136,51 +185,41 @@ const PaymentPage = () => {
                             Order Summary
                         </h2>
 
-                        <div className="payment__product">
-
-                            <img
-                                src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=400&q=80"
-                                alt="Necklace"
-                            />
-
-                            <div>
-                                <h3>
-                                    Étoile Diamond Pavé Necklace
-                                </h3>
-
-                                <span>
-                  REF. EH-74291
-                </span>
-
-                                <p>€12,500</p>
+                        {cart.map((item) => (
+                            <div key={item.productId} className="payment__product">
+                                <img src={item.thumbnailUrl} alt={item.productName} />
+                                <div>
+                                    <h3>{item.productName}</h3>
+                                    <span>Qty: {item.quantity}</span>
+                                    <p>${(item.price || 0).toFixed(2)}</p>
+                                </div>
                             </div>
-
-                        </div>
+                        ))}
 
                         <div className="payment__summary-divider" />
 
                         <div className="payment__summary-row">
                             <span>SUBTOTAL</span>
-                            <span>€12,500</span>
+                            <span>${subtotal.toFixed(2)}</span>
                         </div>
 
                         <div className="payment__summary-row">
                             <span>SHIPPING</span>
                             <span className="accent">
-                COMPLIMENTARY
-              </span>
+                                COMPLIMENTARY
+                            </span>
                         </div>
 
                         <div className="payment__summary-row">
                             <span>TAXES (ESTIMATED)</span>
-                            <span>€2,500</span>
+                            <span>${tax.toFixed(2)}</span>
                         </div>
 
                         <div className="payment__summary-divider" />
 
                         <div className="payment__total">
                             <span>Total</span>
-                            <span>€15,000</span>
+                            <span>${total.toFixed(2)}</span>
                         </div>
 
                         <small>
@@ -200,7 +239,7 @@ const PaymentPage = () => {
             </div>
 
         </main>
-            <Footer />
+        <Footer />
         </>
     );
 };

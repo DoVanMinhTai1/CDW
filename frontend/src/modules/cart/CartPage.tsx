@@ -16,8 +16,10 @@ export function CartPage() {
     const { data: initialCart, loading, error, refetch } = useApiRequest(() => cartService.getCart());
 
     useEffect(() => {
-        if (initialCart) setCartItems(initialCart);
-    }, [initialCart]);
+    if (initialCart) {
+        setCartItems(normalizeCart(initialCart));
+    }
+}, [initialCart]);
 
     const handleRemoveItem = async (productId: string) => {
         const previous = cartItems;
@@ -47,7 +49,17 @@ export function CartPage() {
 
     if (loading && !cartItems.length) return <div className="flex justify-center items-center min-h-screen">Loading cart...</div>;
 
-    const displayCart = cartItems.length ? cartItems : (initialCart || []);
+    const normalizeCart = (data: any): CartItem[] => {
+        if (!data) return [];
+        if (Array.isArray(data)) return data;
+        if (Array.isArray(data.content)) return data.content;
+        if (Array.isArray(data.items)) return data.items;
+        if (Array.isArray(data.cart)) return data.cart;
+        if (Array.isArray(data.data)) return data.data;
+        return [];
+    };
+
+    const displayCart = cartItems.length ? cartItems : normalizeCart(initialCart);
 
     if (displayCart.length === 0) {
         return (
@@ -58,8 +70,7 @@ export function CartPage() {
         );
     }
 
-    const subtotal = displayCart.reduce((sum, item) => sum + (item.product?.price || 0) * item.quantity, 0);
-    const tax = subtotal * 0.1;
+    const subtotal = displayCart.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0); const tax = subtotal * 0.1;
     const total = subtotal + tax;
 
     return (
@@ -74,22 +85,31 @@ export function CartPage() {
                             <span>Quantity</span>
                             <span>Subtotal</span>
                         </div>
-                        {displayCart.map(item => (
+                        {cartItems.map(item => (
                             <article key={item.productId} className="cart-item">
                                 <div className="cart-item__product">
-                                    <img src={item.product?.image} alt={item.product?.name} />
+                                    {/* 1. Sửa ảnh: item.product?.image -> item.thumbnailUrl */}
+                                    <img src={item.thumbnailUrl} alt={item.productName} />
+
                                     <div className="cart-item__info">
-                                        <h3>{item.product?.name}</h3>
-                                        <p>{item.product?.description}</p>
+                                        {/* 2. Sửa tên: item.product?.name -> item.productName */}
+                                        <h3>{item.productName}</h3>
+
+                                        {/* 3. Sửa attributes nếu muốn hiện size/màu */}
+                                        <p>{item.attributes}</p>
+
                                         <button className="cart-item__remove" onClick={() => handleRemoveItem(item.productId)}>Remove</button>
                                     </div>
                                 </div>
+
                                 <div className="cart-item__quantity">
                                     <button onClick={() => handleUpdateQuantity(item.productId, item.quantity - 1)} disabled={item.quantity <= 1}>-</button>
                                     <span>{item.quantity}</span>
                                     <button onClick={() => handleUpdateQuantity(item.productId, item.quantity + 1)}>+</button>
                                 </div>
-                                <div className="cart-item__price">${((item.product?.price || 0) * item.quantity).toFixed(2)}</div>
+
+                                {/* 4. Sửa giá tiền hiển thị của từng dòng item: item.product?.price -> item.price */}
+                                <div className="cart-item__price">${((item.price || 0) * item.quantity).toLocaleString()}</div>
                             </article>
                         ))}
                         <div className="cart-page__gift">
@@ -110,7 +130,7 @@ export function CartPage() {
                                 <button>Apply</button>
                             </div>
                         </div>
-                        <button className="order-summary__checkout" onClick={() => navigate('/checkout')} disabled={displayCart.length === 0}>Proceed To Checkout</button>
+                        <button className="order-summary__checkout" onClick={() => navigate('/checkout', { state: { cart: displayCart } })} disabled={displayCart.length === 0}>Proceed To Checkout</button>
                         <div className="order-summary__features"><p>🔒 Secure Checkout</p><p>📦 Insured Worldwide Delivery</p></div>
                     </aside>
                 </div>

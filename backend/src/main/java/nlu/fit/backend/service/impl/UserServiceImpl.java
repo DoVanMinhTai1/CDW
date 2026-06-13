@@ -1,6 +1,7 @@
 package nlu.fit.backend.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import nlu.fit.backend.config.JwtTokenProvider;
 import nlu.fit.backend.dto.auth.AuthResponse;
 import nlu.fit.backend.dto.auth.LoginRequest;
 import nlu.fit.backend.dto.auth.RegisterRequest;
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Override
     public boolean checkEmailExists(String email) {
@@ -72,10 +74,10 @@ public class UserServiceImpl implements UserService {
             throw new BadRequestException("Tài khoản đã bị khóa!");
         }
 
-        String mockToken = "eyJhbGciOiJIUzI1NiJ9.mockTokenTừBackendNLU...";
-
+//        String mockToken = "eyJhbGciOiJIUzI1NiJ9.mockTokenTừBackendNLU...";
+        String token = jwtTokenProvider.generateToken(account.getEmail());
         return new AuthResponse(
-                mockToken,
+                token,
                 account.getEmail(),
                 account.getFullName() != null ? account.getFullName() : "User"
         );

@@ -1,31 +1,66 @@
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./ReviewPage.css";
 import Header from "../src/modules/header_footer/header";
 import Footer from "../src/modules/header_footer/footer";
-
-const products = [
-    {
-        id: 1,
-        category: "Fine Jewelry",
-        name: "Étoile Diamond Pavé Necklace",
-        detail: "Length: 16-18 inches | Material: 18k White Gold",
-        price: "$12,400",
-        image:
-            "https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?auto=format&fit=crop&w=500&q=80",
-    },
-    {
-        id: 2,
-        category: "Bespoke Collection",
-        name: "Heritage Aurelia Studs",
-        detail: "Carat: 0.5ct each | Setting: Artisan Prongs",
-        price: "$4,850",
-        image:
-            "https://images.unsplash.com/photo-1588444650700-6c7b3f3a93e8?auto=format&fit=crop&w=500&q=80",
-    },
-];
+import { useToast } from "../src/hooks/useToast";
+import { useMutation } from "../src/hooks/useMutation";
+import { checkoutService } from "../src/modules/checkout/service/checkoutService";
+import type { CartItem } from "../src/modules/cart/model";
 
 export default function CheckoutReviewPage() {
     const navigate = useNavigate();
+    const location = useLocation();
+    const { showToast } = useToast();
+
+    const cart: CartItem[] = location.state?.cart || [];
+    const shippingAddress = location.state?.shippingAddress;
+    const paymentMethod = location.state?.paymentMethod; // "CREDIT_CARD" or "BANK_TRANSFER"
+
+    useEffect(() => {
+        if (cart.length === 0 || !shippingAddress || !paymentMethod) {
+            console.warn("Missing checkout info, redirecting back to cart.");
+            navigate("/cart");
+        }
+    }, [cart, shippingAddress, paymentMethod, navigate]);
+
+    const { mutate: placeOrder, loading } = useMutation(
+        async (orderRequest: any) => {
+            return await checkoutService.createOrder(orderRequest);
+        },
+        (order) => {
+            console.log('Order placed successfully, backend response:', order);
+            showToast('Order placed successfully', 'success');
+            navigate(`/order-confirmation/${order?.id}`);
+        },
+        (err) => {
+            console.error('Order placement failed:', err);
+            showToast(err.message || 'Failed to place order', 'error');
+        }
+    );
+
+    const handlePlaceOrder = () => {
+        if (cart.length === 0) {
+            showToast('Cart is empty', 'error');
+            return;
+        }
+        placeOrder({ shippingAddress, paymentMethod });
+    };
+
+    const subtotal = cart.reduce((sum, item) => sum + (item.price || 0) * item.quantity, 0);
+
+    // Tax calculation based on country (matching backend)
+    let taxRate = 0.10; // default 10%
+    if (shippingAddress?.country) {
+        const countryUpper = shippingAddress.country.toUpperCase();
+        if (countryUpper.includes("FRANCE") || countryUpper.includes("GERMANY") || countryUpper.includes("ITALY")) {
+            taxRate = 0.20;
+        } else if (countryUpper.includes("USA") || countryUpper.includes("UNITED STATES")) {
+            taxRate = 0.08;
+        }
+    }
+    const tax = subtotal * taxRate;
+    const total = subtotal + tax;
 
     return (
         <>
@@ -55,29 +90,27 @@ export default function CheckoutReviewPage() {
                             Your Heritage Collection
                         </h2>
 
-                        {products.map((item) => (
+                        {cart.map((item) => (
                             <article
-                                key={item.id}
+                                key={item.productId}
                                 className="review-product"
                             >
                                 <img
-                                    src={item.image}
-                                    alt={item.name}
+                                    src={item.thumbnailUrl}
+                                    alt={item.productName}
                                 />
 
                                 <div className="review-product__info">
-                  <span className="review-product__category">
-                    {item.category}
-                  </span>
-
-                                    <h3>{item.name}</h3>
-
-                                    <p>{item.detail}</p>
+                                    <span className="review-product__category">
+                                        Fine Jewelry
+                                    </span>
+                                    <h3>{item.productName}</h3>
+                                    {item.attributes && <p>{item.attributes}</p>}
                                 </div>
 
                                 <div className="review-product__price">
-                                    <span>Qty: 1</span>
-                                    <strong>{item.price}</strong>
+                                    <span>Qty: {item.quantity}</span>
+                                    <strong>${((item.price || 0) * item.quantity).toFixed(2)}</strong>
                                 </div>
                             </article>
                         ))}
@@ -89,35 +122,36 @@ export default function CheckoutReviewPage() {
                             <div className="review-card">
                                 <div className="review-card__header">
                                     <h3>Shipping Address</h3>
-                                    <button onClick={() => navigate("/checkout/shipping")}>Change</button>
+                                    <button onClick={() => navigate("/checkout/shipping", { state: { cart } })}>Change</button>
                                 </div>
 
-                                <p>Aurelius Thorne</p>
-                                <p>742 Avenue de l'Opéra</p>
-                                <p>Apartment 4B</p>
-                                <p>75002 Paris, France</p>
-
-                                <p className="phone">
-                                    +33 1 42 68 53 00
-                                </p>
+                                {shippingAddress ? (
+                                     <>
+                                         <p>{shippingAddress.firstName} {shippingAddress.lastName}</p>
+                                         <p>{shippingAddress.streetAddress}</p>
+                                         <p>{shippingAddress.city} {shippingAddress.postalCode ? `, ${shippingAddress.postalCode}` : ""}</p>
+                                         <p>{shippingAddress.country}</p>
+                                     </>
+                                 ) : (
+                                     <p>No address provided</p>
+                                 )}
                             </div>
 
                             <div className="review-card">
                                 <div className="review-card__header">
                                     <h3>Payment Method</h3>
-                                    <button onClick={() => navigate("/checkout/payment")}>Change</button>
+                                    <button onClick={() => navigate("/checkout/payment", { state: { cart, shippingAddress } })}>Change</button>
                                 </div>
 
                                 <div className="payment-card">
-                                    <div className="payment-card__logo">
-                                        VISA
-                                    </div>
+                                     <div className="payment-card__logo">
+                                         {paymentMethod === "BANK_TRANSFER" ? "🏦" : "💳"}
+                                     </div>
 
-                                    <div>
-                                        <p>•••• •••• •••• 8842</p>
-                                        <span>Exp: 11 / 28</span>
-                                        <span>Aurelius Thorne</span>
-                                    </div>
+                                     <div>
+                                         <p>{paymentMethod === "BANK_TRANSFER" ? "Bank Concierge Transfer" : "Credit Card Payment"}</p>
+                                         <span>Maison secure payment</span>
+                                     </div>
                                 </div>
                             </div>
 
@@ -152,7 +186,7 @@ export default function CheckoutReviewPage() {
 
                         <div className="summary__row">
                             <span>Subtotal</span>
-                            <span>$17,250.00</span>
+                            <span>${subtotal.toFixed(2)}</span>
                         </div>
 
                         <div className="summary__row">
@@ -162,23 +196,24 @@ export default function CheckoutReviewPage() {
 
                         <div className="summary__row">
                             <span>Estimated Tax</span>
-                            <span>$3,450.00</span>
+                            <span>${tax.toFixed(2)}</span>
                         </div>
 
                         <div className="summary__divider" />
 
                         <div className="summary__total">
                             <span>Total</span>
-                            <strong>$20,700.00</strong>
+                            <strong>${total.toFixed(2)}</strong>
                         </div>
 
                         <small>INCLUSIVE OF VAT</small>
 
                         <button
                             className="summary__button"
-                            onClick={() => navigate("/")}
+                            onClick={handlePlaceOrder}
+                            disabled={loading}
                         >
-                            PLACE ORDER
+                            {loading ? "PROCESSING..." : "PLACE ORDER"}
                         </button>
 
                         <p className="summary__terms">
