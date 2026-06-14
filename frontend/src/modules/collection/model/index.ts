@@ -1,1 +1,1 @@
-export type { Collection } from '../../../api/types';
+export type { ProductItem, Category, Material, PageResponse } from '../../../api/types';

@@ -15,4 +15,6 @@ public interface CartService {
     CartSummaryResponseDto applyPromoCode(String promoCode, String email);
     
     void clearCart(Long userId);
+
+    void clearCartByEmail(String email);
 }

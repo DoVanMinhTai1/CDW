@@ -4,25 +4,35 @@ import { useNavigate } from 'react-router-dom';
 import { useToast } from '../../hooks/useToast';
 import { useMutation } from '../../hooks/useMutation';
 import { authService } from './service/authService';
+import { useAuth } from './AuthContext';
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
     const { showToast } = useToast();
+    const { login: saveLogin } = useAuth();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const { mutate: login, loading } = useMutation(async () => {
         const result = await authService.login(email, password);
         console.log('Login result:', result);
-        // localStorage.setItem('authToken', result.token);
-        // localStorage.setItem('user', JSON.stringify(result.user));
         return result;
     }, (res) => {
         if (res && res.token) {
-            localStorage.setItem('authToken', res.token);
+            saveLogin(res.token, {
+                id: '',
+                email: res.email,
+                fullName: res.fullName,
+                username: res.username,
+                roles: res.roles || []
+            });
 
-            showToast('Login successful', 'success');
-            navigate('/');
+            showToast('Đăng nhập thành công', 'success');
+            if (res.roles && res.roles.includes('ROLE_ADMIN')) {
+                navigate('/admin');
+            } else {
+                navigate('/');
+            }
         } else {
             showToast('Không nhận được token từ hệ thống', 'error');
         }

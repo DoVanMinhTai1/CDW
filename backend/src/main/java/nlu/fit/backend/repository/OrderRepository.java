@@ -12,4 +12,5 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, String> {
     Page<Order> findByUserIdOrderByCreatedAtDesc(Long userId, Pageable pageable);
     List<Order> findTop3ByUserIdOrderByCreatedAtDesc(Long userId);
+    Page<Order> findByStatus(String status, Pageable pageable);
 }

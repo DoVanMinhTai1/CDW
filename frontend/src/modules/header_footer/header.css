@@ -135,3 +135,117 @@
     border-radius: 2px;
     transition: border-color 0.2s ease, background 0.2s ease;
 }
+
+/* User Profile & Dropdown Styles */
+.home-page__profile-container {
+    position: relative;
+    margin-left: 0.5rem;
+    display: inline-block;
+}
+
+.home-page__profile-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 2.5rem;
+    padding: 0 0.8rem;
+    border: 1px solid rgba(26, 26, 26, 0.1);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.home-page__profile-trigger:hover {
+    background: rgba(26, 26, 26, 0.04);
+    border-color: rgba(26, 26, 26, 0.2);
+}
+
+.home-page__profile-name {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.home-page__profile-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    width: 240px;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(26, 26, 26, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    padding: 1rem;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+}
+
+/* Show dropdown on container hover */
+.home-page__profile-container:hover .home-page__profile-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.profile-dropdown__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.profile-dropdown__fullname {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--ink);
+    text-align: left;
+}
+
+.profile-dropdown__username {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: monospace;
+    text-align: left;
+}
+
+.profile-dropdown__email {
+    font-size: 0.75rem;
+    color: var(--muted);
+    word-break: break-all;
+    margin-top: 0.15rem;
+    text-align: left;
+}
+
+.profile-dropdown__divider {
+    height: 1px;
+    background: rgba(26, 26, 26, 0.06);
+    margin: 0.75rem 0;
+}
+
+.profile-dropdown__logout-btn {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid rgba(92, 36, 52, 0.2);
+    background: transparent;
+    color: var(--burgundy);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    text-align: center;
+}
+
+.profile-dropdown__logout-btn:hover {
+    background: var(--burgundy);
+    color: #fff;
+}

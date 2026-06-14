@@ -50,6 +50,17 @@ public class CartController {
         return ResponseEntity.ok(cartService.removeItem(cartItemId, email));
     }
 
+    @DeleteMapping("/clear")
+    public ResponseEntity<Void> clearCart(Authentication authentication) {
+        if (authentication == null) return ResponseEntity.status(401).build();
+        String email = authentication.getName();
+
+        // Gọi sang service xử lý xóa (Logic tìm User dựa trên Email sẽ nằm ở tầng Service)
+        cartService.clearCartByEmail(email);
+
+        return ResponseEntity.noContent().build();
+    }
+
     @PostMapping("/promo/apply")
     public ResponseEntity<CartSummaryResponseDto> applyPromoCode(
             @RequestBody PromoRequest request,

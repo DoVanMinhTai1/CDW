@@ -1,6 +1,7 @@
 package nlu.fit.backend.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import nlu.fit.backend.dto.product.CreateProductRequest;
 import nlu.fit.backend.dto.product.ProductDetailResponseDto;
 import nlu.fit.backend.dto.product.ProductResponseDto;
 import nlu.fit.backend.dto.product.ProductSearchRequest;
@@ -92,5 +93,59 @@ public class ProductServiceImpl implements ProductService {
         }
 
         return detailDto;
+    }
+
+    @Override
+    public ProductResponseDto createProduct(CreateProductRequest request) {
+        Product product = new Product();
+        product.setName(request.getName());
+        product.setPrice(BigDecimal.valueOf(Double.parseDouble(String.valueOf(request.getPrice()))));
+        product.setDescription(request.getDescription());
+        product.setSku(request.getSku());
+        product.setStock(Integer.parseInt(String.valueOf(request.getStock())));
+
+        // Set thumbnail as product image
+        if (request.getThumbnailUrl() != null && !request.getThumbnailUrl().isEmpty()) {
+            ProductImage image = new ProductImage();
+            image.setUrl(request.getThumbnailUrl());
+            image.setProduct(product);
+            product.setImages(List.of(image));
+        }
+
+        Product savedProduct = productRepository.save(product);
+        return mapToResponseDto(savedProduct);
+    }
+
+    @Override
+    public ProductResponseDto updateProduct(Long id, CreateProductRequest request) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sản phẩm với id: " + id));
+
+        product.setName(request.getName());
+        if (request.getPrice() != null) product.setPrice(BigDecimal.valueOf(Double.parseDouble(String.valueOf(request.getPrice()))));
+        if (request.getDescription() != null) product.setDescription(request.getDescription());
+        if (request.getSku() != null) product.setSku(request.getSku());
+        if (request.getStock() != null) product.setStock(Integer.parseInt(String.valueOf(request.getStock())));
+
+        Product updatedProduct = productRepository.save(product);
+        return mapToResponseDto(updatedProduct);
+    }
+
+    @Override
+    public void deleteProduct(Long id) {
+        Product product = productRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Không tìm thấy sản phẩm với id: " + id));
+        productRepository.delete(product);
+    }
+
+    private ProductResponseDto mapToResponseDto(Product product) {
+        return new ProductResponseDto(
+                product.getId(),
+                product.getName(),
+                product.getCategory() != null ? product.getCategory().getName() : "Uncategorized",
+                product.getPrice(),
+                product.getImages() != null && !product.getImages().isEmpty() ?
+                        product.getImages().get(0).getUrl() : null
+        );
     }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.css";
 import Header from "../header_footer/header";
 import Footer from "../header_footer/footer";
+import { useNavigate } from "react-router-dom";
 import { useApiRequest } from '../../hooks/useApiRequest';
 import { bannerService } from './service/bannerService';
 import { productService } from '../product/service/productService';
@@ -34,15 +35,22 @@ const img = {
 } as const;
 
 function ProductCard({ product, onAdd }: { product: any; onAdd?: (id: string) => void }) {
+  const navigate = useNavigate();
   const price = product.price ? new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(product.price) : '';
   const image = product.image || (product.thumbnailUrl ?? '');
   return (
     <div className="product-card">
-      <div className="product-card__media">
+      <div 
+        className="product-card__media cursor-pointer"
+        onClick={() => navigate(`/product/${product.id}`)}
+      >
         {image ? <img src={image} alt={product.name} /> : <div className="product-card__media--placeholder" />}
       </div>
       <div className="product-card__body">
-        <h4 className="product-card__title">{product.name}</h4>
+        <h4 
+          className="product-card__title cursor-pointer hover:text-[#4A1513]"
+          onClick={() => navigate(`/product/${product.id}`)}
+        >{product.name}</h4>
         <div className="product-card__price">{price}</div>
         <button className="product-card__add" onClick={() => onAdd && onAdd(product.id)}>
           Thêm vào giỏ
@@ -69,7 +77,7 @@ const HomePage: React.FC = () => {
   return (
     <div className="home-page">
       <Header />
-
+      
       <section className="home-page__hero">
         <div className="home-page__hero-inner">
           <div className="home-page__hero-copy">
@@ -94,7 +102,11 @@ const HomePage: React.FC = () => {
           <a href="#collections" className="home-page__text-link">View all</a>
         </div>
         <div className="home-page__grid">
-          {featuredLoading && <p>Đang tải...</p>}
+          {featuredLoading && (
+            <div className="flex justify-center items-center min-h-50 w-full">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+          )}
           {!featuredLoading && (!Array.isArray(featured) || featured.length === 0) && <p>Không có sản phẩm nổi bật</p>}
           {!featuredLoading && Array.isArray(featured) && featured.map((p: any) => (
             <ProductCard key={p.id} product={p} onAdd={() => handleAddToCart(p.id)} />

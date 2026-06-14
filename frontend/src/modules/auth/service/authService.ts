@@ -2,7 +2,7 @@ import { apiCall } from '../../../api/client';
 import { ENDPOINTS } from '../../../api/constants';
 import type { User } from '../model';
 
-export async function login(email: string, password: string): Promise<{ token: string; user: User }> {
+export async function login(email: string, password: string): Promise<{ token: string; email: string; fullName: string; username: string }> {
   return apiCall(`${ENDPOINTS.AUTH}/login`, { method: 'POST', body: JSON.stringify({ email, password }) });
 }
 

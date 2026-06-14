@@ -1,6 +1,7 @@
 package nlu.fit.backend.controller;
 
 import lombok.RequiredArgsConstructor;
+import nlu.fit.backend.dto.product.CreateProductRequest;
 import nlu.fit.backend.dto.product.ProductDetailResponseDto;
 import nlu.fit.backend.dto.product.ProductResponseDto;
 import nlu.fit.backend.dto.product.ProductSearchRequest;
@@ -59,5 +60,25 @@ public class ProductController {
     public ResponseEntity<ProductDetailResponseDto> getProductDetail(@PathVariable Long id) {
         ProductDetailResponseDto detailDto = productService.getProductDetail(id);
         return ResponseEntity.ok(detailDto);
+    }
+
+    @PostMapping
+    public ResponseEntity<ProductResponseDto> createProduct(@RequestBody CreateProductRequest request) {
+        ProductResponseDto result = productService.createProduct(request);
+        return ResponseEntity.ok(result);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductResponseDto> updateProduct(
+            @PathVariable Long id,
+            @RequestBody CreateProductRequest request) {
+        ProductResponseDto result = productService.updateProduct(id, request);
+        return ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.ok("Sản phẩm đã được xóa thành công!");
     }
 }

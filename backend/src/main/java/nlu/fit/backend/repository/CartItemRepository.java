@@ -2,6 +2,8 @@ package nlu.fit.backend.repository;
 
 import nlu.fit.backend.model.CartItem;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,4 +16,7 @@ public interface CartItemRepository extends JpaRepository<CartItem, Long> {
     Optional<CartItem> findByUserIdAndProductIdAndSize(Long userId, Long productId, Integer size);
     
     void deleteByUserId(Long userId);
+
+    @Query("SELECT COALESCE(SUM(c.quantity), 0) FROM CartItem c WHERE c.user.id = :userId")
+    Integer countTotalQuantityByUserId(@Param("userId") Long userId);
 }

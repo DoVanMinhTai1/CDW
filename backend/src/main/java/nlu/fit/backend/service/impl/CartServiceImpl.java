@@ -14,6 +14,7 @@ import nlu.fit.backend.repository.CartItemRepository;
 import nlu.fit.backend.repository.ProductRepository;
 import nlu.fit.backend.repository.UserRepository;
 import nlu.fit.backend.service.CartService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -140,6 +141,14 @@ public class CartServiceImpl implements CartService {
         cartItemRepository.deleteByUserId(userId);
     }
 
+    @Transactional
+    public void clearCartByEmail(String email) {
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+        cartItemRepository.deleteByUserId(user.getId());
+    }
+
     private CartSummaryResponseDto calculateSummary(List<CartItem> items, String promoCode) {
         CartSummaryResponseDto summary = new CartSummaryResponseDto();
         List<CartItemResponseDto> dtoList = new ArrayList<>();
@@ -190,5 +199,10 @@ public class CartServiceImpl implements CartService {
         summary.setEstimatedTotal(subTotal.subtract(discount));
 
         return summary;
+    }
+
+    public Integer getCartCount(User user) {
+        if (user == null) return 0;
+        return cartItemRepository.countTotalQuantityByUserId(user.getId());
     }
 }

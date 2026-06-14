@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -76,10 +78,16 @@ public class UserServiceImpl implements UserService {
 
 //        String mockToken = "eyJhbGciOiJIUzI1NiJ9.mockTokenTừBackendNLU...";
         String token = jwtTokenProvider.generateToken(account.getEmail());
+        List<String> roleNames = account.getRoles().stream()
+                .map(Role::getName)
+                .collect(Collectors.toList());
+        System.out.println(roleNames);
         return new AuthResponse(
                 token,
                 account.getEmail(),
-                account.getFullName() != null ? account.getFullName() : "User"
+                account.getFullName() != null ? account.getFullName() : "User",
+                account.getUsername(),
+                roleNames
         );
     }
 

@@ -1,13 +1,9 @@
 import React from "react";
 import "./forgot-password.css";
+import { useNavigate } from "react-router-dom";
 
-type ForgotPasswordPageProps = {
-  onBackToLogin: () => void;
-};
-
-const ForgotPasswordPage: React.FC<ForgotPasswordPageProps> = ({
-  onBackToLogin,
-}) => {
+const ForgotPasswordPage: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <div className="forgot-page">
       <div className="forgot-page__left">
@@ -61,7 +57,7 @@ const ForgotPasswordPage: React.FC<ForgotPasswordPageProps> = ({
             <button
               type="button"
               className="forgot-back"
-              onClick={onBackToLogin}
+              onClick={() => navigate("/login")}
             >
               ← Quay lại Đăng nhập
             </button>

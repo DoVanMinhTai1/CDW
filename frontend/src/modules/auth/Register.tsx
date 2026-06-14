@@ -15,8 +15,8 @@ const RegisterPage: React.FC = () => {
     const [confirm, setConfirm] = useState('');
 
     const { mutate: register, loading } = useMutation(async () => {
-        return await authService.register({ name, email, password });
-    }, () => { showToast('Registration successful, please login', 'success'); navigate('/login'); }, (err) => showToast(err.message, 'error'));
+        return await authService.register({ fullName: name, email, password });
+    }, () => { showToast('Đăng ký tài khoản thành công! Vui lòng đăng nhập.', 'success'); navigate('/login'); }, (err) => showToast(err.message, 'error'));
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
