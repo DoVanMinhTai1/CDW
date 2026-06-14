@@ -42,19 +42,19 @@ services:
       - cdw-network
     restart: unless-stopped
 
-  # Frontend Service (Optional)
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   container_name: cdw-frontend
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - backend
-  #   networks:
-  #     - cdw-network
-  #   restart: unless-stopped
+  # Frontend Service
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: cdw-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - cdw-network
+    restart: unless-stopped
 
 networks:
   cdw-network:
