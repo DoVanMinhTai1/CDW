@@ -1,5 +1,6 @@
 package nlu.fit.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.Instant;
@@ -25,6 +26,7 @@ public class Material {
 
     @OneToMany(mappedBy = "material", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @ToString.Exclude
+    @JsonIgnore
     private List<Product> products;
 
     @Column(name = "created_at", updatable = false)

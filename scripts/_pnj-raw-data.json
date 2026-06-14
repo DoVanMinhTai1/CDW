@@ -1,0 +1,2143 @@
+{
+  "pageProps": {
+    "shopInfo": null,
+    "SEO_Title": "Mua hàng tại Cửa hàng",
+    "initialFilterData": [
+      {
+        "key": "rating",
+        "position": 1,
+        "type": "rating"
+      },
+      {
+        "position": 2,
+        "type": "checkbox",
+        "labels": [
+          {
+            "key": "promotion",
+            "label_id": "1",
+            "label_text": "Khuyến mãi"
+          },
+          {
+            "key": "pnj_fast",
+            "label_id": "1",
+            "label_text": "Giao siêu tốc 3H"
+          },
+          {
+            "key": "new_arrival",
+            "label_id": "1",
+            "label_text": "Hàng mới nhất"
+          }
+        ]
+      },
+      {
+        "key": "f_2981",
+        "position": 5,
+        "text": "Giới tính",
+        "labels": [
+          {
+            "label_id": 19673,
+            "label_text": "Nữ"
+          },
+          {
+            "label_id": 19702,
+            "label_text": "Nam"
+          },
+          {
+            "label_id": 19875,
+            "label_text": "Unisex"
+          },
+          {
+            "label_id": 19874,
+            "label_text": "Trẻ em"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_3037",
+        "position": 6,
+        "text": "Chủng loại",
+        "labels": [
+          {
+            "label_id": 19890,
+            "label_text": "Nhẫn"
+          },
+          {
+            "label_id": 19889,
+            "label_text": "Bông tai"
+          },
+          {
+            "label_id": 35468,
+            "label_text": "Đồng hồ"
+          },
+          {
+            "label_id": 19892,
+            "label_text": "Lắc"
+          },
+          {
+            "label_id": 19894,
+            "label_text": "Dây cổ"
+          },
+          {
+            "label_id": 19908,
+            "label_text": "Charm"
+          },
+          {
+            "label_id": 19891,
+            "label_text": "Mặt dây chuyền"
+          },
+          {
+            "label_id": 19893,
+            "label_text": "Vòng"
+          },
+          {
+            "label_id": 19895,
+            "label_text": "Dây chuyền"
+          },
+          {
+            "label_id": 20021,
+            "label_text": "Sản phẩm theo bộ"
+          },
+          {
+            "label_id": "34189",
+            "label_text": "Nhẫn cưới"
+          },
+          {
+            "label_id": 407771,
+            "label_text": "Tranh"
+          },
+          {
+            "label_id": 19897,
+            "label_text": "Kiềng"
+          },
+          {
+            "label_id": 407304,
+            "label_text": "Tượng"
+          },
+          {
+            "label_id": 19896,
+            "label_text": "Cài áo"
+          },
+          {
+            "label_id": 19900,
+            "label_text": "Khóa chuỗi Pearl"
+          },
+          {
+            "label_id": 19899,
+            "label_text": "Cài manset"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_3156",
+        "position": 7,
+        "text": "Dòng hàng",
+        "labels": [
+          {
+            "label_id": 407828,
+            "label_text": "Trang sức Bạc"
+          },
+          {
+            "label_id": 407826,
+            "label_text": "Đồng hồ"
+          },
+          {
+            "label_id": 407849,
+            "label_text": "Trang sức Kim Cương"
+          },
+          {
+            "label_id": 407832,
+            "label_text": "Trang sức ECZ"
+          },
+          {
+            "label_id": 407834,
+            "label_text": "Trang sức Không gắn đá"
+          },
+          {
+            "label_id": 407838,
+            "label_text": "Trang sức Ý"
+          },
+          {
+            "label_id": 407830,
+            "label_text": "Trang sức Đá màu"
+          },
+          {
+            "label_id": 407829,
+            "label_text": "Trang sức CZ"
+          },
+          {
+            "label_id": 407831,
+            "label_text": "Trang sức Dây chuyền"
+          },
+          {
+            "label_id": 407837,
+            "label_text": "Trang sức Vỏ"
+          },
+          {
+            "label_id": 407836,
+            "label_text": "Trang sức Ngọc Trai"
+          },
+          {
+            "label_id": 407839,
+            "label_text": "Tranh tượng"
+          },
+          {
+            "label_id": 407840,
+            "label_text": "Vàng kỷ niệm"
+          },
+          {
+            "label_id": 407851,
+            "label_text": "Hợp kim cao cấp"
+          },
+          {
+            "label_id": 407827,
+            "label_text": "Quà tặng thương hiệu"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_3036",
+        "position": 8,
+        "text": "Chất liệu",
+        "labels": [
+          {
+            "label_id": 19881,
+            "label_text": "Vàng"
+          },
+          {
+            "label_id": 19882,
+            "label_text": "Bạc"
+          },
+          {
+            "label_id": "19884",
+            "label_text": "Bạch kim"
+          },
+          {
+            "label_id": "407533",
+            "label_text": "Hợp kim cao cấp"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_3040",
+        "position": 9,
+        "text": "Màu chất liệu",
+        "labels": [
+          {
+            "label_id": 19936,
+            "label_text": "Trắng"
+          },
+          {
+            "label_id": 19935,
+            "label_text": "Vàng"
+          },
+          {
+            "label_id": 19939,
+            "label_text": "Hồng + Trắng"
+          },
+          {
+            "label_id": 19940,
+            "label_text": "Hồng"
+          },
+          {
+            "label_id": 19944,
+            "label_text": "Màu khác"
+          },
+          {
+            "label_id": "407881",
+            "label_text": "Vàng + Trắng"
+          },
+          {
+            "label_id": 405186,
+            "label_text": "Trắng + Đen"
+          },
+          {
+            "label_id": 19941,
+            "label_text": "3 màu"
+          },
+          {
+            "label_id": 19943,
+            "label_text": "Colorit"
+          },
+          {
+            "label_id": 19950,
+            "label_text": "Giả cổ"
+          },
+          {
+            "label_id": 19948,
+            "label_text": "Bạc si vàng hồng"
+          },
+          {
+            "label_id": 405191,
+            "label_text": "Vàng + Đen"
+          },
+          {
+            "label_id": 19937,
+            "label_text": "Cao su"
+          },
+          {
+            "label_id": 405190,
+            "label_text": "Đen"
+          },
+          {
+            "label_id": 19942,
+            "label_text": "Vàng + Hồng"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_3045",
+        "position": 10,
+        "text": "Tuổi vàng",
+        "labels": [
+          {
+            "label_id": 19976,
+            "label_text": "Vàng 14K"
+          },
+          {
+            "label_id": 19977,
+            "label_text": "Vàng 18K"
+          },
+          {
+            "label_id": 19975,
+            "label_text": "Vàng 10K"
+          },
+          {
+            "label_id": 19978,
+            "label_text": "Vàng 24K"
+          },
+          {
+            "label_id": 408055,
+            "label_text": "Vàng 8K"
+          },
+          {
+            "label_id": 117778,
+            "label_text": "Vàng 22K"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_2984",
+        "position": 11,
+        "text": "Loại đá chính",
+        "labels": [
+          {
+            "label_id": 405212,
+            "label_text": "Xoàn mỹ"
+          },
+          {
+            "label_id": 405272,
+            "label_text": "Kim cương"
+          },
+          {
+            "label_id": "405148,407587",
+            "label_text": "Synthetic"
+          },
+          {
+            "label_id": 69330,
+            "label_text": "CZ"
+          },
+          {
+            "label_id": 405138,
+            "label_text": "Freshwater Pearl"
+          },
+          {
+            "label_id": 69329,
+            "label_text": "ECZ"
+          },
+          {
+            "label_id": 69324,
+            "label_text": "Ruby"
+          },
+          {
+            "label_id": 69326,
+            "label_text": "Topaz"
+          },
+          {
+            "label_id": 69325,
+            "label_text": "Sapphire"
+          },
+          {
+            "label_id": 69327,
+            "label_text": "Citrine"
+          },
+          {
+            "label_id": 405137,
+            "label_text": "Akoya Pearl"
+          },
+          {
+            "label_id": "405144",
+            "label_text": "Ngọc trai nhân tạo"
+          },
+          {
+            "label_id": 406375,
+            "label_text": "Mother of Pearl"
+          },
+          {
+            "label_id": 110172,
+            "label_text": "Tourmaline"
+          },
+          {
+            "label_id": 69328,
+            "label_text": "Amethyst"
+          },
+          {
+            "label_id": 405141,
+            "label_text": "Tsavorite"
+          },
+          {
+            "label_id": 405142,
+            "label_text": "Tanzanite"
+          },
+          {
+            "label_id": 405128,
+            "label_text": "Garnat"
+          },
+          {
+            "label_id": 340879,
+            "label_text": "Peridot"
+          },
+          {
+            "label_id": 407870,
+            "label_text": "Aventurine"
+          },
+          {
+            "label_id": 407900,
+            "label_text": "Quartz"
+          },
+          {
+            "label_id": 407487,
+            "label_text": "Nhựa"
+          },
+          {
+            "label_id": 19681,
+            "label_text": "Ngọc trai"
+          },
+          {
+            "label_id": 405130,
+            "label_text": "Jadeite"
+          },
+          {
+            "label_id": 405132,
+            "label_text": "Morganite"
+          },
+          {
+            "label_id": 405135,
+            "label_text": "Southsea Pearl"
+          },
+          {
+            "label_id": 405124,
+            "label_text": "Aquamarine"
+          },
+          {
+            "label_id": 405127,
+            "label_text": "Emerald"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_2993",
+        "position": 12,
+        "text": "Color (Màu sắc/ Nước kim cương)",
+        "labels": [
+          {
+            "label_id": 19693,
+            "label_text": "F"
+          },
+          {
+            "label_id": 58802,
+            "label_text": "E"
+          },
+          {
+            "label_id": 58809,
+            "label_text": "G"
+          },
+          {
+            "label_id": 58803,
+            "label_text": "D"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_2996",
+        "position": 13,
+        "text": "Clarity (Độ tinh khiết)",
+        "labels": [
+          {
+            "label_id": 19696,
+            "label_text": "SI1"
+          },
+          {
+            "label_id": 405734,
+            "label_text": "VS2"
+          },
+          {
+            "label_id": 407852,
+            "label_text": "SA"
+          },
+          {
+            "label_id": 19697,
+            "label_text": "VS1"
+          },
+          {
+            "label_id": 19698,
+            "label_text": "VVS1"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_3091",
+        "position": 14,
+        "text": "Ổ hột",
+        "labels": [
+          {
+            "label_id": 333859,
+            "label_text": "5.4 ly"
+          },
+          {
+            "label_id": "407873,407466,407660",
+            "label_text": "6.0 ly"
+          },
+          {
+            "label_id": 231354,
+            "label_text": "4.5 ly"
+          },
+          {
+            "label_id": "223175",
+            "label_text": "5.0 ly"
+          },
+          {
+            "label_id": 407874,
+            "label_text": "4.5 ly"
+          },
+          {
+            "label_id": "407468,407854,407688",
+            "label_text": "4.0 ly"
+          },
+          {
+            "label_id": 295403,
+            "label_text": "5.5 ly"
+          },
+          {
+            "label_id": 407460,
+            "label_text": "4.2 ly"
+          },
+          {
+            "label_id": 407549,
+            "label_text": "6.8 ly"
+          },
+          {
+            "label_id": 407718,
+            "label_text": "6.3 ly"
+          },
+          {
+            "label_id": 294249,
+            "label_text": "4.8 ly"
+          },
+          {
+            "label_id": 407456,
+            "label_text": "6.3 ly"
+          },
+          {
+            "label_id": 407471,
+            "label_text": "8.1 ly"
+          },
+          {
+            "label_id": 407493,
+            "label_text": "5.2 ly"
+          },
+          {
+            "label_id": 407516,
+            "label_text": "7.2 ly"
+          },
+          {
+            "label_id": 407684,
+            "label_text": "7.2 ly"
+          },
+          {
+            "label_id": 405450,
+            "label_text": "2.1 ly"
+          },
+          {
+            "label_id": 406577,
+            "label_text": "4.7 ly"
+          },
+          {
+            "label_id": 407462,
+            "label_text": "5.1 ly"
+          },
+          {
+            "label_id": 407469,
+            "label_text": "3.5 ly"
+          },
+          {
+            "label_id": 407477,
+            "label_text": "6.5 ly"
+          },
+          {
+            "label_id": 407719,
+            "label_text": "5.5 ly"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_2995",
+        "position": 15,
+        "text": "Kích thước đá chính (tham khảo)",
+        "labels": [
+          {
+            "label_id": "407087,69332",
+            "label_text": "2.0 ly"
+          },
+          {
+            "label_id": "407261,60618",
+            "label_text": "3.0 ly"
+          },
+          {
+            "label_id": "58810,406561",
+            "label_text": "4.0 ly"
+          },
+          {
+            "label_id": 58813,
+            "label_text": "2.5 ly"
+          },
+          {
+            "label_id": 67469,
+            "label_text": "1.5 ly"
+          },
+          {
+            "label_id": 406637,
+            "label_text": "3.5 ly"
+          },
+          {
+            "label_id": 58800,
+            "label_text": "4.5 ly"
+          },
+          {
+            "label_id": "59719,407164",
+            "label_text": "5.0 ly"
+          },
+          {
+            "label_id": "407714,70786",
+            "label_text": "1.0 ly"
+          },
+          {
+            "label_id": 406590,
+            "label_text": "3.6 ly"
+          },
+          {
+            "label_id": "406573,279339",
+            "label_text": "6.0 ly"
+          },
+          {
+            "label_id": 58805,
+            "label_text": "5.4 ly"
+          },
+          {
+            "label_id": 58801,
+            "label_text": "4.3 ly"
+          },
+          {
+            "label_id": 60613,
+            "label_text": "3.9 ly"
+          },
+          {
+            "label_id": 67922,
+            "label_text": "2.4 ly"
+          },
+          {
+            "label_id": 74431,
+            "label_text": "1.2 ly"
+          },
+          {
+            "label_id": 67924,
+            "label_text": "2.6 ly"
+          },
+          {
+            "label_id": 67925,
+            "label_text": "2.7 ly"
+          },
+          {
+            "label_id": 59596,
+            "label_text": "3.8 ly"
+          },
+          {
+            "label_id": "407077",
+            "label_text": "7.0 ly"
+          },
+          {
+            "label_id": 62910,
+            "label_text": "3.5 ly"
+          },
+          {
+            "label_id": 67626,
+            "label_text": "1.4 ly"
+          },
+          {
+            "label_id": 67926,
+            "label_text": "1.6 ly"
+          },
+          {
+            "label_id": 60617,
+            "label_text": "3.2 ly"
+          },
+          {
+            "label_id": 66007,
+            "label_text": "1.7 ly"
+          },
+          {
+            "label_id": 406592,
+            "label_text": "1.25 ly"
+          },
+          {
+            "label_id": 62913,
+            "label_text": "2.8 ly"
+          },
+          {
+            "label_id": "406568,324437",
+            "label_text": "8.0 ly"
+          },
+          {
+            "label_id": 67923,
+            "label_text": "2.3 ly"
+          },
+          {
+            "label_id": 67927,
+            "label_text": "1.9 ly"
+          },
+          {
+            "label_id": 67929,
+            "label_text": "2.1 ly"
+          },
+          {
+            "label_id": 58804,
+            "label_text": "4.2 ly"
+          },
+          {
+            "label_id": 66194,
+            "label_text": "1.8 ly"
+          },
+          {
+            "label_id": "407147,407129",
+            "label_text": "3.0 x 3.0 ly"
+          },
+          {
+            "label_id": 60614,
+            "label_text": "3.6 ly"
+          },
+          {
+            "label_id": 99591,
+            "label_text": "0.9 ly"
+          },
+          {
+            "label_id": 280584,
+            "label_text": "6.3 ly"
+          },
+          {
+            "label_id": "406920,406641",
+            "label_text": "8.0 x 10.0 ly"
+          },
+          {
+            "label_id": "407301,406829",
+            "label_text": "3.0 x 5.0 ly"
+          },
+          {
+            "label_id": 62919,
+            "label_text": "5.3 ly"
+          },
+          {
+            "label_id": 294248,
+            "label_text": "6.5 ly"
+          },
+          {
+            "label_id": "407414",
+            "label_text": "4.0 x 4.0 ly"
+          },
+          {
+            "label_id": "407324,406827",
+            "label_text": "4.0 x 6.0 ly"
+          },
+          {
+            "label_id": 324436,
+            "label_text": "5.5 ly"
+          },
+          {
+            "label_id": "405357,405358",
+            "label_text": "10.0 ly"
+          },
+          {
+            "label_id": "406830,407151",
+            "label_text": "5.0 x 7.0 ly"
+          },
+          {
+            "label_id": 67921,
+            "label_text": "1.3 ly"
+          },
+          {
+            "label_id": 323903,
+            "label_text": "8.5 ly"
+          },
+          {
+            "label_id": 406563,
+            "label_text": "2.9 ly"
+          },
+          {
+            "label_id": 406597,
+            "label_text": "4.7 ly"
+          },
+          {
+            "label_id": "407156,405356",
+            "label_text": "9.0 ly"
+          },
+          {
+            "label_id": "406843,407132",
+            "label_text": "6.0 x 8.0 ly"
+          },
+          {
+            "label_id": "407173",
+            "label_text": "7.0 x 7.0 ly"
+          },
+          {
+            "label_id": 58807,
+            "label_text": "4.7 ly"
+          },
+          {
+            "label_id": 58812,
+            "label_text": "4.8 ly"
+          },
+          {
+            "label_id": 60619,
+            "label_text": "3.1 ly"
+          },
+          {
+            "label_id": 62918,
+            "label_text": "3.4 ly"
+          },
+          {
+            "label_id": 67928,
+            "label_text": "2.2 ly"
+          },
+          {
+            "label_id": 405359,
+            "label_text": "7.5 ly"
+          },
+          {
+            "label_id": 406652,
+            "label_text": "5.2 ly"
+          },
+          {
+            "label_id": 407793,
+            "label_text": "2.0 x 4.0 ly"
+          },
+          {
+            "label_id": 407799,
+            "label_text": "1.75 ly"
+          },
+          {
+            "label_id": "407707",
+            "label_text": "1.2 x 5.0 ly"
+          },
+          {
+            "label_id": "407205,407207",
+            "label_text": "2.0 x 4.0 ly"
+          },
+          {
+            "label_id": 60620,
+            "label_text": "2.9 ly"
+          },
+          {
+            "label_id": 69323,
+            "label_text": "3.3 ly"
+          },
+          {
+            "label_id": 407734,
+            "label_text": "2.5 x 3.0 ly"
+          },
+          {
+            "label_id": 407738,
+            "label_text": "2.0 x 2.5 ly"
+          },
+          {
+            "label_id": 407759,
+            "label_text": "7.5 x 9.5 ly"
+          },
+          {
+            "label_id": 407788,
+            "label_text": "2.5 x 3.6 ly"
+          },
+          {
+            "label_id": "407248",
+            "label_text": "7.0 x 9.0 ly"
+          },
+          {
+            "label_id": 58806,
+            "label_text": "4.6 ly"
+          },
+          {
+            "label_id": 58811,
+            "label_text": "4.4 ly"
+          },
+          {
+            "label_id": 60615,
+            "label_text": "4.1 ly"
+          },
+          {
+            "label_id": 62914,
+            "label_text": "4.9 ly"
+          },
+          {
+            "label_id": 112353,
+            "label_text": "1.1 ly"
+          },
+          {
+            "label_id": 322108,
+            "label_text": "6.6 ly"
+          },
+          {
+            "label_id": 322547,
+            "label_text": "9.5 ly"
+          },
+          {
+            "label_id": 324434,
+            "label_text": "5.7 ly"
+          },
+          {
+            "label_id": 324438,
+            "label_text": "7.9 ly"
+          },
+          {
+            "label_id": 407199,
+            "label_text": "1.7 x 50 ly"
+          },
+          {
+            "label_id": 407247,
+            "label_text": "8.0 x 8.0 ly"
+          },
+          {
+            "label_id": 407250,
+            "label_text": "3.5 x 3.5 ly"
+          },
+          {
+            "label_id": 407251,
+            "label_text": "2.5 x 2.5 ly"
+          },
+          {
+            "label_id": "407145",
+            "label_text": "2.0 x 3.0 ly"
+          },
+          {
+            "label_id": "406132",
+            "label_text": "3.0 x 4.5 ly"
+          },
+          {
+            "label_id": "407315",
+            "label_text": "5.0 x 5.0 ly"
+          },
+          {
+            "label_id": "407243",
+            "label_text": "12.0 x 14.0 ly"
+          },
+          {
+            "label_id": "407998",
+            "label_text": "6.0 x 6.0 ly"
+          },
+          {
+            "label_id": "407316",
+            "label_text": "7.0 x 7.5 ly"
+          },
+          {
+            "label_id": 60616,
+            "label_text": "3.7 ly"
+          },
+          {
+            "label_id": 62916,
+            "label_text": "5.2 ly"
+          },
+          {
+            "label_id": 62920,
+            "label_text": "5.1 ly"
+          },
+          {
+            "label_id": 294247,
+            "label_text": "7.7 ly"
+          },
+          {
+            "label_id": 322545,
+            "label_text": "9.9 ly"
+          },
+          {
+            "label_id": 327093,
+            "label_text": "6.8 ly"
+          },
+          {
+            "label_id": 406356,
+            "label_text": "2.5 x 2.5 ly"
+          },
+          {
+            "label_id": 406562,
+            "label_text": "0.8 ly"
+          },
+          {
+            "label_id": 406578,
+            "label_text": "4.1 ly"
+          },
+          {
+            "label_id": 406603,
+            "label_text": "5.4 x 5.5 ly"
+          },
+          {
+            "label_id": 406610,
+            "label_text": "5.3 x 5.4 ly"
+          },
+          {
+            "label_id": 407149,
+            "label_text": "5.5 x 5.5 ly"
+          },
+          {
+            "label_id": 407160,
+            "label_text": "2.4 x 4.2 ly"
+          },
+          {
+            "label_id": 407166,
+            "label_text": "5.4 x 5.4 ly"
+          },
+          {
+            "label_id": 407245,
+            "label_text": "8.5 x 8.5 ly"
+          },
+          {
+            "label_id": 407257,
+            "label_text": "1.2 x 50 ly"
+          },
+          {
+            "label_id": 407266,
+            "label_text": "5.4 x 5.4 ly"
+          },
+          {
+            "label_id": 407269,
+            "label_text": "7.5 x 7.5 ly"
+          },
+          {
+            "label_id": 407739,
+            "label_text": "1.2 x 2.5 ly"
+          },
+          {
+            "label_id": 407758,
+            "label_text": "6.5 x 8.5 ly"
+          },
+          {
+            "label_id": 407776,
+            "label_text": "3.5 x 5.0 ly"
+          },
+          {
+            "label_id": 407786,
+            "label_text": "2.4 x 3.0 ly"
+          },
+          {
+            "label_id": 407792,
+            "label_text": "2.5 x 4.0 ly"
+          },
+          {
+            "label_id": 407803,
+            "label_text": "1.8 x 2.4 ly"
+          },
+          {
+            "label_id": 407821,
+            "label_text": "1.8 x 3.5 ly"
+          },
+          {
+            "label_id": 407822,
+            "label_text": "1.5 x 2.5 ly"
+          },
+          {
+            "label_id": 407949,
+            "label_text": "10.0 x 14.0 ly"
+          },
+          {
+            "label_id": 407950,
+            "label_text": "9.0 x 13.0 ly"
+          },
+          {
+            "label_id": 407971,
+            "label_text": "9.0 x 11.0 ly"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "price_ranges",
+        "position": 16,
+        "text": "Giá",
+        "labels": [
+          {
+            "label_id": 1,
+            "label_text": "Dưới 1 triệu"
+          },
+          {
+            "label_id": 2,
+            "label_text": "Từ 1 - 3 triệu"
+          },
+          {
+            "label_id": 3,
+            "label_text": "Từ 3 - 5 triệu"
+          },
+          {
+            "label_id": 4,
+            "label_text": "Từ 5 - 10 triệu"
+          },
+          {
+            "label_id": 5,
+            "label_text": "Từ 10 - 20 triệu"
+          },
+          {
+            "label_id": 6,
+            "label_text": "Từ 20 - 30 triệu"
+          },
+          {
+            "label_id": 7,
+            "label_text": "Từ 30 - 50 triệu"
+          },
+          {
+            "label_id": 8,
+            "label_text": "Từ 50 - 100 triệu"
+          },
+          {
+            "label_id": 9,
+            "label_text": "Trên 100 triệu"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "size_ni_nhan",
+        "text": "Size Ni Nhẫn",
+        "labels": [
+          {
+            "label_id": 8,
+            "label_text": 8
+          },
+          {
+            "label_id": 9,
+            "label_text": 9
+          },
+          {
+            "label_id": 10,
+            "label_text": 10
+          },
+          {
+            "label_id": 11,
+            "label_text": 11
+          },
+          {
+            "label_id": 12,
+            "label_text": 12
+          },
+          {
+            "label_id": 13,
+            "label_text": 13
+          },
+          {
+            "label_id": 14,
+            "label_text": 14
+          },
+          {
+            "label_id": 15,
+            "label_text": 15
+          },
+          {
+            "label_id": 16,
+            "label_text": 16
+          },
+          {
+            "label_id": 17,
+            "label_text": 17
+          },
+          {
+            "label_id": 18,
+            "label_text": 18
+          },
+          {
+            "label_id": 19,
+            "label_text": 19
+          },
+          {
+            "label_id": 20,
+            "label_text": 20
+          }
+        ],
+        "position": 17,
+        "type": "label"
+      },
+      {
+        "key": "size_ni_lac_day_chuyen_day_co",
+        "text": "Size Ni Lắc",
+        "labels": [
+          {
+            "label_id": 14,
+            "label_text": 14
+          },
+          {
+            "label_id": 15,
+            "label_text": 15
+          },
+          {
+            "label_id": 16,
+            "label_text": 16
+          },
+          {
+            "label_id": 17,
+            "label_text": 17
+          },
+          {
+            "label_id": 18,
+            "label_text": 18
+          },
+          {
+            "label_id": 19,
+            "label_text": 19
+          },
+          {
+            "label_id": 20,
+            "label_text": 20
+          },
+          {
+            "label_id": 21,
+            "label_text": 21
+          },
+          {
+            "label_id": 22,
+            "label_text": 22
+          },
+          {
+            "label_id": 23,
+            "label_text": 23
+          },
+          {
+            "label_id": 24,
+            "label_text": 24
+          },
+          {
+            "label_id": 25,
+            "label_text": 25
+          }
+        ],
+        "position": 18,
+        "type": "label"
+      },
+      {
+        "key": "size_ni_lac_day_chuyen_day_co",
+        "text": "Size Ni Dây Chuyền và Dây Cổ",
+        "labels": [
+          {
+            "label_id": 36,
+            "label_text": 36
+          },
+          {
+            "label_id": 38,
+            "label_text": 38
+          },
+          {
+            "label_id": 40,
+            "label_text": 40
+          },
+          {
+            "label_id": 42,
+            "label_text": 42
+          },
+          {
+            "label_id": 45,
+            "label_text": 45
+          },
+          {
+            "label_id": 48,
+            "label_text": 48
+          },
+          {
+            "label_id": 50,
+            "label_text": 50
+          },
+          {
+            "label_id": 55,
+            "label_text": 55
+          }
+        ],
+        "position": 19,
+        "type": "label"
+      },
+      {
+        "key": "size_ni_vong",
+        "text": "Size Ni Vòng",
+        "labels": [
+          {
+            "label_id": 38,
+            "label_text": 38
+          },
+          {
+            "label_id": 40,
+            "label_text": 40
+          },
+          {
+            "label_id": 42,
+            "label_text": 42
+          },
+          {
+            "label_id": 44,
+            "label_text": 44
+          },
+          {
+            "label_id": 46,
+            "label_text": 46
+          },
+          {
+            "label_id": 49,
+            "label_text": 49
+          },
+          {
+            "label_id": 50,
+            "label_text": 50
+          },
+          {
+            "label_id": 51,
+            "label_text": 51
+          },
+          {
+            "label_id": 52,
+            "label_text": 52
+          },
+          {
+            "label_id": 53,
+            "label_text": 53
+          },
+          {
+            "label_id": 54,
+            "label_text": 54
+          },
+          {
+            "label_id": 55,
+            "label_text": 55
+          },
+          {
+            "label_id": 56,
+            "label_text": 56
+          },
+          {
+            "label_id": 58,
+            "label_text": 58
+          },
+          {
+            "label_id": 60,
+            "label_text": 60
+          }
+        ],
+        "position": 20,
+        "type": "label"
+      },
+      {
+        "key": "f_18",
+        "position": 21,
+        "text": "Thương hiệu",
+        "labels": [
+          {
+            "label_id": 19645,
+            "label_text": "PNJ"
+          },
+          {
+            "label_id": 406086,
+            "label_text": "STYLE By PNJ"
+          },
+          {
+            "label_id": 19842,
+            "label_text": "PNJSilver"
+          },
+          {
+            "label_id": 406133,
+            "label_text": "Disney|PNJ"
+          },
+          {
+            "label_id": 406818,
+            "label_text": "SANRIO"
+          },
+          {
+            "label_id": 407708,
+            "label_text": "MANCODE by PNJ"
+          },
+          {
+            "label_id": 19675,
+            "label_text": "Longines"
+          },
+          {
+            "label_id": 19814,
+            "label_text": "Citizen"
+          },
+          {
+            "label_id": 19677,
+            "label_text": "Tissot"
+          },
+          {
+            "label_id": 405218,
+            "label_text": "Fossil"
+          },
+          {
+            "label_id": 405217,
+            "label_text": "Daniel Wellington"
+          },
+          {
+            "label_id": 405216,
+            "label_text": "Casio"
+          },
+          {
+            "label_id": 405223,
+            "label_text": "Orient"
+          },
+          {
+            "label_id": 407787,
+            "label_text": "PNJ x emoji™"
+          },
+          {
+            "label_id": 407601,
+            "label_text": "Disney Watch"
+          },
+          {
+            "label_id": "406155",
+            "label_text": "PNJArt"
+          },
+          {
+            "label_id": 19813,
+            "label_text": "Michael Kors"
+          },
+          {
+            "label_id": 407816,
+            "label_text": "PNJWatch"
+          },
+          {
+            "label_id": 407894,
+            "label_text": "Doraemon | PNJ"
+          },
+          {
+            "label_id": 405710,
+            "label_text": "Skagen"
+          },
+          {
+            "label_id": 407592,
+            "label_text": "Rado"
+          },
+          {
+            "label_id": 19844,
+            "label_text": "Seiko"
+          },
+          {
+            "label_id": 407866,
+            "label_text": "Sweeties"
+          },
+          {
+            "label_id": 331170,
+            "label_text": "Titan"
+          },
+          {
+            "label_id": 405655,
+            "label_text": "Calvin Klein"
+          },
+          {
+            "label_id": 19676,
+            "label_text": "SKAGEN"
+          },
+          {
+            "label_id": 407848,
+            "label_text": "Marvel"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_2979",
+        "position": 22,
+        "text": "Bộ sưu tập",
+        "labels": [
+          {
+            "label_id": 19805,
+            "label_text": "Hạnh phúc vàng"
+          },
+          {
+            "label_id": 406231,
+            "label_text": "Trầu Cau"
+          },
+          {
+            "label_id": 407511,
+            "label_text": "Kim Bảo Như Ý"
+          },
+          {
+            "label_id": 35469,
+            "label_text": "First Diamond"
+          },
+          {
+            "label_id": 407074,
+            "label_text": "Family Infinity"
+          },
+          {
+            "label_id": 406817,
+            "label_text": "Lucky Mickey"
+          },
+          {
+            "label_id": 407921,
+            "label_text": "Grow with you"
+          },
+          {
+            "label_id": 407480,
+            "label_text": "Audax Rosa"
+          },
+          {
+            "label_id": 407909,
+            "label_text": "Turning Gold"
+          },
+          {
+            "label_id": 406832,
+            "label_text": "The shining princess"
+          },
+          {
+            "label_id": 407920,
+            "label_text": "BELLA FESTA"
+          },
+          {
+            "label_id": 407937,
+            "label_text": "It's Blooming Time"
+          },
+          {
+            "label_id": 406545,
+            "label_text": "Timeless Diamond"
+          },
+          {
+            "label_id": 407609,
+            "label_text": "GIA ĐÌNH THÚ CƯNG"
+          },
+          {
+            "label_id": 406681,
+            "label_text": "Masterpiece"
+          },
+          {
+            "label_id": 407910,
+            "label_text": "Magnétique"
+          },
+          {
+            "label_id": 19807,
+            "label_text": "Vòng Tay Charm D.I.Y"
+          },
+          {
+            "label_id": 407865,
+            "label_text": "Energy Stone"
+          },
+          {
+            "label_id": 407961,
+            "label_text": "Doraemon | PNJ"
+          },
+          {
+            "label_id": 407932,
+            "label_text": "Marvel Captain America"
+          },
+          {
+            "label_id": 407947,
+            "label_text": "Thiên Mã Đăng Hoa"
+          },
+          {
+            "label_id": 407906,
+            "label_text": "Lá Ngọc Cành Vàng"
+          },
+          {
+            "label_id": 407091,
+            "label_text": "Materpiece"
+          },
+          {
+            "label_id": 19666,
+            "label_text": "Nhẫn cặp"
+          },
+          {
+            "label_id": 407936,
+            "label_text": "Friendship"
+          },
+          {
+            "label_id": 407935,
+            "label_text": "Bisous"
+          },
+          {
+            "label_id": 406591,
+            "label_text": "Alice In Wonderland"
+          },
+          {
+            "label_id": 405199,
+            "label_text": "Chung Đôi"
+          },
+          {
+            "label_id": 407607,
+            "label_text": "It's Sakura Time"
+          },
+          {
+            "label_id": 407941,
+            "label_text": "The Fairy Tale"
+          },
+          {
+            "label_id": 407958,
+            "label_text": "PNJ ❤️ KUROMI"
+          },
+          {
+            "label_id": 407606,
+            "label_text": "Inside out 2"
+          },
+          {
+            "label_id": 407158,
+            "label_text": "Tangled"
+          },
+          {
+            "label_id": 407960,
+            "label_text": "Lovely Hello Kitty"
+          },
+          {
+            "label_id": 405364,
+            "label_text": "Snow White & the Seven Dwarfs"
+          },
+          {
+            "label_id": 406588,
+            "label_text": "Yêu Thương Vô Cùng"
+          },
+          {
+            "label_id": 407274,
+            "label_text": "Sunnyva"
+          },
+          {
+            "label_id": 407815,
+            "label_text": "Fly Me To The Moon"
+          },
+          {
+            "label_id": 153813,
+            "label_text": "Friendzone Breaker"
+          },
+          {
+            "label_id": 407686,
+            "label_text": "Jasmine"
+          },
+          {
+            "label_id": 406642,
+            "label_text": "Tinkerbell"
+          },
+          {
+            "label_id": 407584,
+            "label_text": "Tiểu Lộc Đại Phát"
+          },
+          {
+            "label_id": 407585,
+            "label_text": "Lucky Me"
+          },
+          {
+            "label_id": 407775,
+            "label_text": "Lời Vàng Ý Ngọc"
+          },
+          {
+            "label_id": 158324,
+            "label_text": "Sắc Xuân"
+          },
+          {
+            "label_id": 388747,
+            "label_text": "Fantasia"
+          },
+          {
+            "label_id": 406839,
+            "label_text": "The Heart of gold"
+          },
+          {
+            "label_id": 407302,
+            "label_text": "Share the wonder"
+          },
+          {
+            "label_id": 407922,
+            "label_text": "Genesis Diamond"
+          },
+          {
+            "label_id": 407957,
+            "label_text": "Thập Nhị Linh Thú"
+          },
+          {
+            "label_id": 405435,
+            "label_text": "Mickey & Minnie"
+          },
+          {
+            "label_id": 406824,
+            "label_text": "Euphoria"
+          },
+          {
+            "label_id": 407586,
+            "label_text": "You're the apple of my eye"
+          },
+          {
+            "label_id": 406315,
+            "label_text": "The Anthology of Light"
+          },
+          {
+            "label_id": 406622,
+            "label_text": "The Story in your rings"
+          },
+          {
+            "label_id": 406308,
+            "label_text": "Mickey & Friends"
+          },
+          {
+            "label_id": 407201,
+            "label_text": "Diamond Princess"
+          },
+          {
+            "label_id": 407202,
+            "label_text": "Disney Mickey Minnie Junior"
+          },
+          {
+            "label_id": 407924,
+            "label_text": "Thuận Buồm Xuôi Gió"
+          },
+          {
+            "label_id": 407925,
+            "label_text": "Eternal Diamond"
+          },
+          {
+            "label_id": 19661,
+            "label_text": "My Feeling"
+          },
+          {
+            "label_id": 406135,
+            "label_text": "The language of flowers"
+          },
+          {
+            "label_id": 406658,
+            "label_text": "Nàng tiên cá Ariel"
+          },
+          {
+            "label_id": 407943,
+            "label_text": "Nhẫn cầu hôn Only You"
+          },
+          {
+            "label_id": 406825,
+            "label_text": "Peter Pan"
+          },
+          {
+            "label_id": 407200,
+            "label_text": "Baby Gifting Vol 2"
+          },
+          {
+            "label_id": 19653,
+            "label_text": "Hoàng gia - Royal"
+          },
+          {
+            "label_id": 405367,
+            "label_text": "Cinderella"
+          },
+          {
+            "label_id": 405434,
+            "label_text": "Winnie The Pooh"
+          },
+          {
+            "label_id": 406131,
+            "label_text": "Sweet Spring"
+          },
+          {
+            "label_id": 407556,
+            "label_text": "Love Potion"
+          },
+          {
+            "label_id": 407923,
+            "label_text": "Người Truyền Lửa"
+          },
+          {
+            "label_id": 407926,
+            "label_text": "Wings of love"
+          },
+          {
+            "label_id": 19654,
+            "label_text": "Phượng hoàng - Phoenix"
+          },
+          {
+            "label_id": 35470,
+            "label_text": "BOHO Dream"
+          },
+          {
+            "label_id": 405430,
+            "label_text": "Mickey"
+          },
+          {
+            "label_id": 406643,
+            "label_text": "Disney Kid"
+          },
+          {
+            "label_id": 19663,
+            "label_text": "Charm Me"
+          },
+          {
+            "label_id": 405365,
+            "label_text": "Frozen"
+          },
+          {
+            "label_id": 405366,
+            "label_text": "Beauty & The Beast"
+          },
+          {
+            "label_id": 405431,
+            "label_text": "Minnie"
+          },
+          {
+            "label_id": 406134,
+            "label_text": "Valentine 2021"
+          },
+          {
+            "label_id": 406409,
+            "label_text": "Sleeping Beauty"
+          },
+          {
+            "label_id": 406678,
+            "label_text": "The Merrier"
+          },
+          {
+            "label_id": 19652,
+            "label_text": "Dáng Ngọc"
+          },
+          {
+            "label_id": 19657,
+            "label_text": "Huyền bí - Mystery"
+          },
+          {
+            "label_id": 19872,
+            "label_text": "My Princess"
+          },
+          {
+            "label_id": 405211,
+            "label_text": "Aura"
+          },
+          {
+            "label_id": 405432,
+            "label_text": "Disney"
+          },
+          {
+            "label_id": 406126,
+            "label_text": "Spring Arrival"
+          },
+          {
+            "label_id": 406238,
+            "label_text": "Hạnh Phúc"
+          },
+          {
+            "label_id": 406241,
+            "label_text": "Sắc Son"
+          },
+          {
+            "label_id": 406246,
+            "label_text": "Sắc Hoa Xuân"
+          },
+          {
+            "label_id": 406254,
+            "label_text": "Hoa Tình Yêu"
+          },
+          {
+            "label_id": 406408,
+            "label_text": "Hoa của Mẹ"
+          },
+          {
+            "label_id": 406815,
+            "label_text": "Thần Tài 2023"
+          },
+          {
+            "label_id": 407100,
+            "label_text": "Mickey & Friends Vol.3"
+          },
+          {
+            "label_id": 407608,
+            "label_text": "DNA VOL 4"
+          },
+          {
+            "label_id": 407912,
+            "label_text": "Cột Mốc Vàng Son"
+          },
+          {
+            "label_id": 407913,
+            "label_text": "Định Ước Uyên Ương"
+          },
+          {
+            "label_id": 19656,
+            "label_text": "Hoa Hồng - Rose"
+          },
+          {
+            "label_id": 35473,
+            "label_text": "Golden Baby"
+          },
+          {
+            "label_id": 119426,
+            "label_text": "Her Time"
+          },
+          {
+            "label_id": 290669,
+            "label_text": "Wanderlust"
+          },
+          {
+            "label_id": 405342,
+            "label_text": "Gem Melting"
+          },
+          {
+            "label_id": 406128,
+            "label_text": "Nụ Tầm Xuân"
+          },
+          {
+            "label_id": 406252,
+            "label_text": "Hoa Duyên"
+          },
+          {
+            "label_id": 406621,
+            "label_text": "Nàng Thu"
+          },
+          {
+            "label_id": 406842,
+            "label_text": "Sweety Hello Kitty"
+          },
+          {
+            "label_id": 19658,
+            "label_text": "Juice Me Up"
+          },
+          {
+            "label_id": 35471,
+            "label_text": "Minimalist"
+          },
+          {
+            "label_id": 115491,
+            "label_text": "Juice Baby"
+          },
+          {
+            "label_id": 339197,
+            "label_text": "Retro Forest"
+          },
+          {
+            "label_id": 405429,
+            "label_text": "True Love"
+          },
+          {
+            "label_id": 406078,
+            "label_text": "DNA"
+          },
+          {
+            "label_id": 406127,
+            "label_text": "Spring Love"
+          },
+          {
+            "label_id": 406138,
+            "label_text": "Love you to the moon & back"
+          },
+          {
+            "label_id": 406242,
+            "label_text": "Tình Nồng"
+          },
+          {
+            "label_id": 406255,
+            "label_text": "Mật Ngọt Hạnh Phúc"
+          },
+          {
+            "label_id": 406256,
+            "label_text": "Tình Xuân"
+          },
+          {
+            "label_id": 406345,
+            "label_text": "Sứ giả mùa xuân"
+          },
+          {
+            "label_id": 406635,
+            "label_text": "Báu Vật Phu Thê"
+          },
+          {
+            "label_id": 407629,
+            "label_text": "Tiny Pearl"
+          },
+          {
+            "label_id": 407774,
+            "label_text": "Vương Xà Trấn Bảo"
+          },
+          {
+            "label_id": 407911,
+            "label_text": "Mạnh Mẽ Vươn Tầm"
+          },
+          {
+            "label_id": 407931,
+            "label_text": "24K Turing Gold"
+          },
+          {
+            "label_id": 407959,
+            "label_text": "Long Phụng Giao Hòa"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_3132",
+        "position": 23,
+        "text": "Chất liệu dây",
+        "labels": [
+          {
+            "label_id": "407597,407610,407668,407605",
+            "label_text": "Dây thép cao cấp không gỉ 316L"
+          },
+          {
+            "label_id": "407335,407214,407614,407617",
+            "label_text": "Dây Da"
+          },
+          {
+            "label_id": "407350,407604,407652,407353,407622",
+            "label_text": "Dây Cao Su"
+          },
+          {
+            "label_id": 406521,
+            "label_text": "Dây Ceramic"
+          },
+          {
+            "label_id": "406732",
+            "label_text": "Dây Kim Loại"
+          },
+          {
+            "label_id": "407616",
+            "label_text": "Dây Alloy (hợp kim xi)"
+          },
+          {
+            "label_id": 406660,
+            "label_text": "Dây Tổng Hợp"
+          },
+          {
+            "label_id": "407397,407620",
+            "label_text": "Dây Vải"
+          },
+          {
+            "label_id": "407695",
+            "label_text": "Dây PU"
+          },
+          {
+            "label_id": 406633,
+            "label_text": "Dây Thép Không Gỉ"
+          },
+          {
+            "label_id": "407672",
+            "label_text": "Dây Titanium"
+          },
+          {
+            "label_id": "407401",
+            "label_text": "Vàng 18k"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_3140",
+        "position": 24,
+        "text": "Hình dạng mặt",
+        "labels": [
+          {
+            "label_id": 406425,
+            "label_text": "Tròn"
+          },
+          {
+            "label_id": 406420,
+            "label_text": "Vuông"
+          },
+          {
+            "label_id": 406463,
+            "label_text": "Chữ nhật"
+          },
+          {
+            "label_id": 406508,
+            "label_text": "Oval"
+          },
+          {
+            "label_id": 406519,
+            "label_text": "Khác"
+          },
+          {
+            "label_id": 406476,
+            "label_text": "Tonneau"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_3130",
+        "position": 26,
+        "text": "Loại máy đồng hồ",
+        "labels": [
+          {
+            "label_id": 407209,
+            "label_text": "Quartz (Pin)"
+          },
+          {
+            "label_id": 407345,
+            "label_text": "Automatic (cơ tự động)"
+          },
+          {
+            "label_id": "407339",
+            "label_text": "Eco-drive"
+          },
+          {
+            "label_id": 406557,
+            "label_text": "Powermatic 80"
+          },
+          {
+            "label_id": "406706",
+            "label_text": "Solar"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_3133",
+        "position": 27,
+        "text": "Độ chịu nước",
+        "labels": [
+          {
+            "label_id": 407346,
+            "label_text": "3 atm"
+          },
+          {
+            "label_id": 407215,
+            "label_text": "5 atm"
+          },
+          {
+            "label_id": 407347,
+            "label_text": "10 atm"
+          },
+          {
+            "label_id": 407349,
+            "label_text": "20 atm"
+          },
+          {
+            "label_id": 407384,
+            "label_text": "1 atm"
+          }
+        ],
+        "type": "label"
+      },
+      {
+        "key": "f_3142",
+        "position": 28,
+        "text": "Đá Gắn Kèm Đồng Hồ",
+        "labels": [
+          {
+            "label_id": "407619",
+            "label_text": "Đá tổng hợp, pha lê"
+          },
+          {
+            "label_id": "407618",
+            "label_text": "Kim cương"
+          },
+          {
+            "label_id": 406450,
+            "label_text": "Swarovski"
+          }
+        ],
+        "type": "label"
+      }
+    ]
+  },
+  "__N_SSP": true
+}

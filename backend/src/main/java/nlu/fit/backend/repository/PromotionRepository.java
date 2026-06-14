@@ -1,0 +1,13 @@
+package nlu.fit.backend.repository;
+
+import nlu.fit.backend.model.Promotion;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.time.Instant;
+import java.util.List;
+
+@Repository
+public interface PromotionRepository extends JpaRepository<Promotion, Long> {
+    List<Promotion> findByIsActiveTrueAndExpiresAtAfter(Instant now);
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "url": { "type": "string", "format": "uri" },
+    "selectors": {
+      "type": "object",
+      "properties": {
+        "productContainer": { "type": "string", "description": "CSS selector for the product card wrapper element" },
+        "name": { "type": "string", "description": "CSS selector for product name, relative to container" },
+        "price": { "type": "string", "description": "CSS selector for product price" },
+        "image": { "type": "string", "description": "CSS selector for product image (returns src attribute)" },
+        "link": { "type": "string", "description": "CSS selector for product detail link (returns href attribute)" },
+        "category": { "type": "string", "description": "CSS selector for product category" },
+        "description": { "type": "string", "description": "CSS selector for product short description" }
+      },
+      "required": ["productContainer", "name", "price"]
+    },
+    "crawler": {
+      "type": "object",
+      "properties": {
+        "userAgent": { "type": "string" },
+        "delayMs": { "type": "integer", "minimum": 0, "default": 1500 },
+        "maxRetries": { "type": "integer", "minimum": 0, "default": 3 },
+        "timeoutMs": { "type": "integer", "minimum": 1000, "default": 30000 }
+      }
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "format": { "type": "string", "enum": ["json", "csv"] },
+        "file": { "type": "string" }
+      }
+    }
+  },
+  "required": ["url", "selectors"]
+}

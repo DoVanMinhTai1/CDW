@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # Backend Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: cdw-backend
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: ${SPRING_JPA_HIBERNATE_DDL_AUTO}
+      SPRING_JPA_SHOW_SQL: ${SPRING_JPA_SHOW_SQL}
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: ${SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT}
+      VNPAY_PAYURL: ${VNPAY_PAYURL}
+      VNPAY_RETURNURL: ${VNPAY_RETURNURL}
+      VNPAY_TMNCODE: ${VNPAY_TMNCODE}
+      VNPAY_HASHSECRET: ${VNPAY_HASHSECRET}
+    depends_on:
+      - postgres
+    networks:
+      - cdw-network
+    restart: unless-stopped
+
+  # PostgreSQL Service (Local Database - Optional)
+  postgres:
+    image: postgres:15-alpine
+    container_name: cdw-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_DB: ${POSTGRES_DB:-jewelry_db}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - cdw-network
+    restart: unless-stopped
+
+  # Frontend Service (Optional)
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   container_name: cdw-frontend
+  #   ports:
+  #     - "3000:3000"
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - cdw-network
+  #   restart: unless-stopped
+
+networks:
+  cdw-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

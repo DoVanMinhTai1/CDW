@@ -1,0 +1,17 @@
+{
+  "$schema": "./config.schema.json",
+  "categories": ["nhan"],
+  "categoryIds": null,
+  "discoverCategories": true,
+  "output": {
+    "format": "json",
+    "file": "./scripts/output/pnj-products.json"
+  },
+  "crawler": {
+    "userAgent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (compatible; PNJ-Crawler/1.0)",
+    "delayMs": 300,
+    "maxRetries": 3,
+    "timeoutMs": 30000,
+    "maxPagesPerCategory": 5
+  }
+}
