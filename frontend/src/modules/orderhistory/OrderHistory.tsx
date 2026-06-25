@@ -61,7 +61,6 @@ export default function OrderHistory() {
 
     return (
         <div className="min-h-screen bg-[#FDFDFD] text-[#2C2523] font-serif">
-
             {/* 1. HEADER */}
             <header className="border-b border-[#EAE6E2] bg-white sticky top-0 z-50">
                 <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
