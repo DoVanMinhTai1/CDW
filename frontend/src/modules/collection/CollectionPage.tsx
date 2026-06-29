@@ -1,20 +1,18 @@
-import './CollectionPage.css';
-
 import Header from "../header_footer/header.tsx";
 import Footer from "../header_footer/footer.tsx";
-import { ChevronDown, ArrowRight, ArrowLeft } from 'lucide-react';
+import { ChevronDown, Search, ArrowRight, ArrowLeft } from 'lucide-react';
 import { Link, useParams } from "react-router-dom";
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useApiRequest } from '../../hooks/useApiRequest';
 import { collectionService } from './service/collectionService';
 import type { Category, Material } from './model';
 
 const CollectionPage = () => {
-    const { id } = useParams<{ id: string }>(); 
-    
+    const { id } = useParams<{ id: string }>();
+
     // Filter states
     const [search, setSearch] = useState('');
-    const [searchInput, setSearchInput] = useState(''); 
+    const [searchInput, setSearchInput] = useState('');
     const [selectedCategories, setSelectedCategories] = useState<number[]>(id ? [Number(id)] : []);
     const [selectedMaterials, setSelectedMaterials] = useState<number[]>([]);
     const [minPrice, setMinPrice] = useState<number | undefined>();
@@ -45,7 +43,7 @@ const CollectionPage = () => {
     useEffect(() => {
         const timer = setTimeout(() => {
             setSearch(searchInput);
-            setPage(0); 
+            setPage(0);
         }, 500);
         return () => clearTimeout(timer);
     }, [searchInput]);
@@ -58,14 +56,14 @@ const CollectionPage = () => {
     }, [id]);
 
     const handleCategoryToggle = (categoryId: number) => {
-        setSelectedCategories(prev => 
+        setSelectedCategories(prev =>
             prev.includes(categoryId) ? prev.filter(i => i !== categoryId) : [...prev, categoryId]
         );
         setPage(0);
     };
 
     const handleMaterialToggle = (materialId: number) => {
-        setSelectedMaterials(prev => 
+        setSelectedMaterials(prev =>
             prev.includes(materialId) ? prev.filter(i => i !== materialId) : [...prev, materialId]
         );
         setPage(0);
@@ -88,13 +86,13 @@ const CollectionPage = () => {
 
     const renderPagination = () => {
         if (totalPages <= 1) return null;
-        
+
         const pages = [];
         for (let i = 0; i < totalPages; i++) {
             pages.push(
-                <span 
-                    key={i} 
-                    className={page === i ? "active" : ""} 
+                <span
+                    key={i}
+                    className={page === i ? "active" : ""}
                     onClick={() => setPage(i)}
                     style={{ cursor: 'pointer' }}
                 >
@@ -126,38 +124,62 @@ const CollectionPage = () => {
     ];
 
     return (
-        <div className="collection-page">
+        <div className="bg-[#fcfbfa] text-[#2b1d1d] font-sans antialiased min-h-screen">
             <Header />
-            <section className="hero">
-                <h1>L'Héritage Collection</h1>
-                <p>A curated assembly of timeless masterpieces, where every facet reflects a century of craftsmanship and the quiet elegance of modern heritage.</p>
+
+            {/* HERO BANNER SECTION */}
+            <section className="bg-gradient-to-b from-[#f3ece4]/60 to-transparent text-center px-6 py-16 md:py-24 max-w-[1280px] mx-auto rounded-b-2xl">
+                <h1 className="font-serif text-3xl sm:text-5xl font-medium tracking-tight mb-4 text-[#1a1111]">
+                    L'Héritage Collection
+                </h1>
+                <p className="max-w-2xl mx-auto text-[0.95rem] sm:text-base text-neutral-500 leading-relaxed font-light">
+                    A curated assembly of timeless masterpieces, where every facet reflects a century of craftsmanship and the quiet elegance of modern heritage.
+                </p>
             </section>
 
-            <div className="top-bar">
-                <span>Displaying {totalElements} items</span>
-                
-                <div className="search-bar" style={{ flex: 1, margin: '0 2rem', maxWidth: '400px' }}>
-                    <input 
-                        type="text" 
-                        placeholder="Search products..." 
+            {/* TOP BAR: Controls & Search */}
+            <div className="max-w-[1280px] mx-auto px-6 py-6 border-b border-neutral-200/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span className="text-xs font-semibold uppercase tracking-wider text-neutral-400 order-3 sm:order-1">
+                    Displaying {totalElements} items
+                </span>
+
+                {/* Luxurious Search Bar */}
+                <div className="relative w-full sm:max-w-md order-1 sm:order-2">
+                    <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none text-neutral-400">
+                        <Search size={16} />
+                    </span>
+                    <input
+                        type="text"
+                        placeholder="Search premium pieces..."
                         value={searchInput}
                         onChange={(e) => setSearchInput(e.target.value)}
-                        style={{ width: '100%', padding: '8px 12px', border: '1px solid #ddd', borderRadius: '4px' }}
+                        className="w-full pl-10 pr-4 py-2.5 bg-white text-sm border border-neutral-200 rounded-lg shadow-sm focus:outline-none focus:border-[#5b0f16] focus:ring-1 focus:ring-[#5b0f16]/20 transition-all placeholder-neutral-400"
                     />
                 </div>
 
-                <div className="sort" style={{ position: 'relative' }}>
-                    <span style={{ marginRight: '8px' }}>Sort by:</span>
-                    <button onClick={() => setIsSortOpen(!isSortOpen)}>
-                        {sortOptions.find(o => o.value === sortBy)?.label || 'Featured'} <ChevronDown size={14} />
-                    </button>
+                {/* Sophisticated Sort Dropdown */}
+                <div className="relative order-2 sm:order-3 self-end sm:self-auto shrink-0 z-20">
+                    <div className="flex items-center gap-2 text-sm text-neutral-500">
+                        <span>Sort by:</span>
+                        <button
+                            onClick={() => setIsSortOpen(!isSortOpen)}
+                            className="flex items-center gap-1.5 font-medium text-neutral-800 bg-white border border-neutral-200 rounded-lg px-4 py-2 shadow-sm hover:border-neutral-300 transition"
+                        >
+                            {sortOptions.find(o => o.value === sortBy)?.label || 'Featured'}
+                            <ChevronDown size={14} className={`transition-transform duration-200 ${isSortOpen ? "rotate-180" : ""}`} />
+                        </button>
+                    </div>
+
                     {isSortOpen && (
-                        <div className="sort-dropdown" style={{ position: 'absolute', top: '100%', right: 0, background: 'white', border: '1px solid #ddd', zIndex: 10, width: '160px', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+                        <div className="absolute right-0 mt-2 bg-white border border-neutral-100 rounded-xl w-48 shadow-xl overflow-hidden py-1">
                             {sortOptions.map(opt => (
-                                <div 
-                                    key={opt.value} 
-                                    style={{ padding: '8px 12px', cursor: 'pointer', background: sortBy === opt.value ? '#f5f5f5' : 'white' }}
+                                <div
+                                    key={opt.value}
                                     onClick={() => { setSortBy(opt.value); setIsSortOpen(false); setPage(0); }}
+                                    className={`px-4 py-2.5 text-sm cursor-pointer transition-colors ${sortBy === opt.value
+                                        ? "bg-[#5b0f16]/5 text-[#5b0f16] font-medium"
+                                        : "text-neutral-600 hover:bg-neutral-50"
+                                        }`}
                                 >
                                     {opt.label}
                                 </div>
@@ -167,88 +189,160 @@ const CollectionPage = () => {
                 </div>
             </div>
 
-            <section className="content">
-                <aside className="sidebar">
-                    <div className="filter-group">
-                        <h4>Category</h4>
-                        <label>
-                            <input 
-                                type="checkbox" 
-                                checked={selectedCategories.length === 0} 
-                                onChange={() => { setSelectedCategories([]); setPage(0); }}
-                            /> 
-                            All Pieces
-                        </label>
-                        {loadingCategories ? <p>Loading...</p> : categories.map(cat => (
-                            <label key={cat.id} className={selectedCategories.includes(cat.id) ? "active-check" : ""}>
-                                <input 
-                                    type="checkbox" 
-                                    checked={selectedCategories.includes(cat.id)}
-                                    onChange={() => handleCategoryToggle(cat.id)}
-                                /> 
-                                {cat.name}
+            {/* MAIN LAYOUT CONTENT */}
+            <section className="max-w-[1280px] mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-[240px_1fr] gap-10 items-start">
+
+                {/* SIDEBAR FILTERS */}
+                <aside className="space-y-8 sticky top-6">
+                    {/* Category Group */}
+                    <div>
+                        <h4 className="text-[0.72rem] uppercase tracking-[0.16em] font-bold text-neutral-400 mb-4 pb-2 border-b border-neutral-100">
+                            Category
+                        </h4>
+                        <div className="flex flex-col gap-3">
+                            <label className="flex items-center gap-3 text-sm text-neutral-700 cursor-pointer group">
+                                <input
+                                    type="checkbox"
+                                    checked={selectedCategories.length === 0}
+                                    onChange={() => { setSelectedCategories([]); setPage(0); }}
+                                    className="w-4 h-4 rounded text-[#5b0f16] border-neutral-300 focus:ring-[#5b0f16]"
+                                />
+                                <span className={selectedCategories.length === 0 ? "font-medium text-[#5b0f16]" : "group-hover:text-black transition"}>
+                                    All Pieces
+                                </span>
                             </label>
-                        ))}
+
+                            {loadingCategories ? (
+                                <p className="text-xs text-neutral-400 animate-pulse">Loading categories...</p>
+                            ) : categories.map(cat => (
+                                <label key={cat.id} className="flex items-center gap-3 text-sm text-neutral-700 cursor-pointer group">
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedCategories.includes(cat.id)}
+                                        onChange={() => handleCategoryToggle(cat.id)}
+                                        className="w-4 h-4 rounded text-[#5b0f16] border-neutral-300 focus:ring-[#5b0f16]"
+                                    />
+                                    <span className={selectedCategories.includes(cat.id) ? "font-medium text-[#5b0f16]" : "group-hover:text-black transition"}>
+                                        {cat.name}
+                                    </span>
+                                </label>
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="filter-group">
-                        <h4>Material</h4>
-                        {loadingMaterials ? <p>Loading...</p> : materials.map(mat => (
-                            <label key={mat.id} className={selectedMaterials.includes(mat.id) ? "active-check" : ""}>
-                                <input 
-                                    type="checkbox" 
-                                    checked={selectedMaterials.includes(mat.id)}
-                                    onChange={() => handleMaterialToggle(mat.id)}
-                                /> 
-                                <span className="dot" style={{ backgroundColor: mat.colorHex, display: 'inline-block', width: '12px', height: '12px', borderRadius: '50%', marginRight: '8px' }}></span> 
-                                {mat.name}
-                            </label>
-                        ))}
+                    {/* Material Group */}
+                    <div>
+                        <h4 className="text-[0.72rem] uppercase tracking-[0.16em] font-bold text-neutral-400 mb-4 pb-2 border-b border-neutral-100">
+                            Material
+                        </h4>
+                        <div className="flex flex-col gap-3">
+                            {loadingMaterials ? (
+                                <p className="text-xs text-neutral-400 animate-pulse">Loading materials...</p>
+                            ) : materials.map(mat => (
+                                <label key={mat.id} className="flex items-center gap-3 text-sm text-neutral-700 cursor-pointer group">
+                                    <input
+                                        type="checkbox"
+                                        checked={selectedMaterials.includes(mat.id)}
+                                        onChange={() => handleMaterialToggle(mat.id)}
+                                        className="w-4 h-4 rounded text-[#5b0f16] border-neutral-300 focus:ring-[#5b0f16]"
+                                    />
+                                    <div className="flex items-center gap-2">
+                                        <span className="w-3.5 h-3.5 rounded-full border border-black/10 shadow-inner shrink-0" style={{ backgroundColor: mat.colorHex }}></span>
+                                        <span className={selectedMaterials.includes(mat.id) ? "font-medium text-[#5b0f16]" : "group-hover:text-black transition"}>
+                                            {mat.name}
+                                        </span>
+                                    </div>
+                                </label>
+                            ))}
+                        </div>
                     </div>
 
-                    <div className="filter-group">
-                        <h4>Price Range</h4>
-                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginTop: '10px' }}>
-                            <input 
-                                type="number" 
-                                placeholder="Min $" 
-                                value={minPrice || ''} 
+                    {/* Price Range Group */}
+                    <div>
+                        <h4 className="text-[0.72rem] uppercase tracking-[0.16em] font-bold text-neutral-400 mb-4 pb-2 border-b border-neutral-100">
+                            Price Range
+                        </h4>
+                        <div className="flex items-center gap-2 mt-3">
+                            <input
+                                type="number"
+                                placeholder="Min $"
+                                value={minPrice || ''}
                                 onChange={e => { setMinPrice(e.target.value ? Number(e.target.value) : undefined); setPage(0); }}
-                                style={{ width: '80px', padding: '4px' }}
+                                className="w-full px-2.5 py-1.5 text-sm border border-neutral-200 bg-white rounded-md text-center focus:outline-none focus:border-[#5b0f16]"
                             />
-                            <span>-</span>
-                            <input 
-                                type="number" 
-                                placeholder="Max $" 
-                                value={maxPrice || ''} 
+                            <span className="text-neutral-400 text-xs">-</span>
+                            <input
+                                type="number"
+                                placeholder="Max $"
+                                value={maxPrice || ''}
                                 onChange={e => { setMaxPrice(e.target.value ? Number(e.target.value) : undefined); setPage(0); }}
-                                style={{ width: '80px', padding: '4px' }}
+                                className="w-full px-2.5 py-1.5 text-sm border border-neutral-200 bg-white rounded-md text-center focus:outline-none focus:border-[#5b0f16]"
                             />
                         </div>
                     </div>
 
-                    <button className="reset-btn" onClick={handleResetFilters}>Reset Filters</button>
+                    {/* Reset Filters Button */}
+                    <button
+                        onClick={handleResetFilters}
+                        className="w-full py-2.5 border border-dashed border-neutral-200 text-xs font-semibold uppercase tracking-wider text-neutral-500 hover:text-[#5b0f16] hover:border-[#5b0f16] rounded-md transition-all flex items-center justify-center gap-1.5 bg-white"
+                    >
+                        Reset Filters
+                    </button>
                 </aside>
 
-                <div className="products-grid">
-                    {loadingProducts && <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px' }}>Loading products...</div>}
-                    {!loadingProducts && products.length === 0 && (
-                        <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '40px', color: '#666' }}>
-                            No products found matching your criteria.
+                {/* PRODUCTS GRID */}
+                <div className="flex-1">
+                    {loadingProducts && (
+                        <div className="flex flex-col items-center justify-center py-24 col-span-full">
+                            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#5b0f16]"></div>
+                            <p className="text-xs text-neutral-400 mt-4">Loading high artisan products...</p>
                         </div>
                     )}
-                    {!loadingProducts && products.map((item) => (
-                        <Link to={`/product/${item.id}`} key={item.id} className="product-card">
-                            <img src={item.thumbnailUrl || 'https://via.placeholder.com/300x300'} alt={item.name} />
-                            <span className="product-category">{item.collectionName}</span>
-                            <h3>{item.name}</h3>
-                            <p>${item.price ? item.price.toLocaleString() : '0'}</p>
-                        </Link>
-                    ))}
+
+                    {!loadingProducts && products.length === 0 && (
+                        <div className="text-center py-24 px-4 border border-dashed border-neutral-200 rounded-xl bg-neutral-50/50">
+                            <p className="text-neutral-500 text-sm">No products found matching your criteria.</p>
+                            <button onClick={handleResetFilters} className="mt-3 text-xs font-semibold text-[#5b0f16] underline underline-offset-4">Clear Filters</button>
+                        </div>
+                    )}
+
+                    {!loadingProducts && (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {products.map((item) => (
+                                <Link
+                                    to={`/product/${item.id}`}
+                                    key={item.id}
+                                    className="group flex flex-col bg-white border border-neutral-100 p-3 rounded-xl transition-all duration-300 hover:shadow-md hover:border-neutral-200/80"
+                                >
+                                    <div className="relative aspect-square overflow-hidden rounded-lg bg-neutral-50 mb-4">
+                                        <img
+                                            src={item.thumbnailUrl || 'https://via.placeholder.com/300x300'}
+                                            alt={item.name}
+                                            className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                                        />
+                                    </div>
+                                    <div className="flex flex-col flex-1 text-left">
+                                        <span className="text-[0.68rem] uppercase tracking-widest font-semibold text-neutral-400 mb-1">
+                                            {item.collectionName || 'Fine Jewelry'}
+                                        </span>
+                                        <h3 className="font-normal text-[0.95rem] text-neutral-800 line-clamp-2 mb-2 group-hover:text-[#5b0f16] transition-colors duration-200">
+                                            {item.name}
+                                        </h3>
+                                        <p className="mt-auto font-medium text-neutral-900 text-base">
+                                            ${item.price ? item.price.toLocaleString() : '0'}
+                                        </p>
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
 
-            {renderPagination()}
+            {/* PAGINATION WRAPPER */}
+            <div className="max-w-[1280px] mx-auto px-6 pb-20 flex justify-center">
+                {renderPagination()}
+            </div>
 
             <Footer />
         </div>
