@@ -14,11 +14,10 @@ const PaymentPage = () => {
 
     useEffect(() => {
         if (cart.length === 0 || !shippingAddress) {
-                "Missing cart or shipping address, redirecting back to cart."
-            );
             navigate("/cart");
         }
     }, [cart, shippingAddress, navigate]);
+
 
     const handleContinue = () => {
         const backendPaymentMethod =
@@ -102,20 +101,18 @@ const PaymentPage = () => {
                             {/* Credit Card */}
                             <div
                                 onClick={() => setPaymentMethod("card")}
-                                className={`bg-white border p-7 mb-[22px] cursor-pointer transition-all ${
-                                    paymentMethod === "card"
+                                className={`bg-white border p-7 mb-[22px] cursor-pointer transition-all ${paymentMethod === "card"
                                         ? "border-[#7b3c3c]"
                                         : "border-[#e3ddd7]"
-                                }`}
+                                    }`}
                             >
                                 <div className="flex items-center mb-8">
 
                                     <div
-                                        className={`w-4 h-4 rounded-full mr-4 ${
-                                            paymentMethod === "card"
+                                        className={`w-4 h-4 rounded-full mr-4 ${paymentMethod === "card"
                                                 ? "border-[5px] border-[#4f1212]"
                                                 : "border border-[#bdb4ae]"
-                                        }`}
+                                            }`}
                                     />
 
                                     <span>
@@ -184,20 +181,18 @@ const PaymentPage = () => {
                             {/* Bank */}
                             <div
                                 onClick={() => setPaymentMethod("bank")}
-                                className={`bg-white border p-7 mb-[22px] cursor-pointer transition-all ${
-                                    paymentMethod === "bank"
+                                className={`bg-white border p-7 mb-[22px] cursor-pointer transition-all ${paymentMethod === "bank"
                                         ? "border-[#7b3c3c]"
                                         : "border-[#e3ddd7]"
-                                }`}
+                                    }`}
                             >
                                 <div className="flex items-center mb-8">
 
                                     <div
-                                        className={`w-4 h-4 rounded-full mr-4 ${
-                                            paymentMethod === "bank"
+                                        className={`w-4 h-4 rounded-full mr-4 ${paymentMethod === "bank"
                                                 ? "border-[5px] border-[#4f1212]"
                                                 : "border border-[#bdb4ae]"
-                                        }`}
+                                            }`}
                                     />
 
                                     <span>
